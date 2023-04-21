@@ -21,7 +21,7 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(SFML)
 
-add_executable(AppWithParameters
+add_executable(DLSim
     "main.cpp"
 )
 
