@@ -1,0 +1,42 @@
+﻿{
+  "configurations": [
+    {
+      "name": "Release32",
+      "generator": "Visual Studio 17 2022",
+      "configurationType": "Release",
+      "inheritEnvironments": [ "msvc_x32" ],
+      "intelliSenseMode": "windows-msvc-x86",
+      "buildRoot": "${projectDir}\\build\\${name}",
+      "installRoot": "${projectDir}\\install\\${name}"
+    },
+    {
+      "name": "Release64",
+      "generator": "Visual Studio 17 2022 Win64",
+      "configurationType": "Release",
+      "intelliSenseMode": "windows-msvc-x64",
+      "inheritEnvironments": [ "msvc_x64_x64" ],
+      "buildCommandArgs": "-p:PreferredToolArchitecture=x64",
+      "buildRoot": "${projectDir}\\build\\${name}",
+      "installRoot": "${projectDir}\\install\\${name}"
+    },
+    {
+      "name": "Debug32",
+      "generator": "Visual Studio 17 2022",
+      "configurationType": "Debug",
+      "intelliSenseMode": "windows-msvc-x86",
+      "inheritEnvironments": [ "msvc_x32" ],
+      "buildRoot": "${projectDir}\\build\\${name}",
+      "installRoot": "${projectDir}\\install\\${name}"
+    },
+    {
+      "name": "Debug64",
+      "generator": "Visual Studio 17 2022 Win64",
+      "configurationType": "Debug",
+      "intelliSenseMode": "windows-msvc-x64",
+      "inheritEnvironments": [ "msvc_x64_x64" ],
+      "buildCommandArgs": "-p:PreferredToolArchitecture=x64",
+      "buildRoot": "${projectDir}\\build\\${name}",
+      "installRoot": "${projectDir}\\install\\${name}"
+    }
+  ]
+}
