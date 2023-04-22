@@ -23,13 +23,13 @@ FetchContent_MakeAvailable(SFML)
 
 add_executable(DLSim
     "main.cpp"
-    "src/Transfers/ITransfer.h"
 )
 
 target_compile_features(DLSim PRIVATE cxx_std_20)
 
 target_include_directories(DLSim 
         PUBLIC ./
+        PRIVATE ./src/Interfaces
         )
 
 # Link external libs we need
