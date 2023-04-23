@@ -23,7 +23,7 @@ FetchContent_MakeAvailable(SFML)
 
 add_executable(DLSim
     "main.cpp"
-)
+ "src/Network.h")
 
 target_compile_features(DLSim PRIVATE cxx_std_20)
 
