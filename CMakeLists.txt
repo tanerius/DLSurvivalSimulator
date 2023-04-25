@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.21)
+cmake_minimum_required(VERSION 3.25)
 
 project(DLSim 
     VERSION			1.0.0
@@ -23,13 +23,18 @@ FetchContent_MakeAvailable(SFML)
 
 add_executable(DLSim
     "main.cpp"
- "src/Network.h")
+    "src/Network.h"
+    "src/graphics/Helpers.h"
+    "src/graphics/Entity.h"
+    "src/graphics/Entity.cpp"
+ )
 
 target_compile_features(DLSim PRIVATE cxx_std_20)
 
 target_include_directories(DLSim 
         PUBLIC ./
         PRIVATE ./src/Interfaces
+        PRIVATE ./src/graphics
         )
 
 # Link external libs we need

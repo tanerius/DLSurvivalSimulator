@@ -7,30 +7,39 @@ class IAgent
 {
 public: 
     /// <summary>
-    /// Method to move agent forward
+    /// Method to move north
     /// </summary>
-    void Accelerate() = 0; 
+    virtual void GoN() = 0; 
 
     /// <summary>
-    /// Method to stop agent
+    /// Method to move west
     /// </summary>
-    void Deccelerate() = 0;
+    virtual void GoW() = 0;
 
     /// <summary>
-    /// Method to modify the agents' forward vector orientaiton
+    /// Method to move south
     /// </summary>
-    /// <param name="deg">The compass direction to turn to in degrees</param>
-    void TurnTo(float deg) = 0;
+    virtual void GoS() = 0;
+
+    /// <summary>
+    /// Method to move south
+    /// </summary>
+    virtual void GoE() = 0;
 
     /// <summary>
     /// Method to check if agent is alive
     /// </summary>
     /// <returns>True == alive otherwise false</returns>
-    bool IsAlive() = 0;
+    virtual bool IsAlive() = 0;
 
     /// <summary>
     /// Method to check if agent has collided with something
     /// </summary>
     /// <returns>True == agent has collided otherwise false</returns>
-    bool HasCollided() = 0;
+    virtual bool HasCollided() = 0;
+
+    /// <summary>
+    /// Method to be called on each frame which will update enity values
+    /// </summary>
+    virtual void Update() = 0;
 };
