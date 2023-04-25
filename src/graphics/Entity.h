@@ -8,10 +8,10 @@ namespace DLS
     class Entity : public IAgent, public sf::CircleShape
     {
         private:
-        const float m_maxSpeed = 4.0;
-        const float m_friction = 0.15;
-        bool m_isAlive = true;
-        Vector2D m_reposition = {0,0};
+        const   float       m_maxSpeed  {4.0};
+        const   float       m_friction  {0.15};
+                bool        m_isAlive   {true};
+                Vector2D    m_reposition{0, 0};
 
         /// @brief 4 bit bitfield NESW
         int m_movementFLag = 0;
