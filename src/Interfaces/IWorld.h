@@ -13,12 +13,12 @@ namespace DLS
         /// <summary>
         /// Get a center world position from a coordinate
         /// </summary>
-        virtual Vector2D GetCoordinateFromPosition(Coordinate c) = 0;
+        virtual Vector2D GetCenteredPositionFromCoordinate(Coordinate c) = 0;
 
         /// <summary>
-        /// Get a world coordinate from a position
+        /// Get a coordinate from a world position
         /// </summary>
-        virtual Coordinate GetWorldPositionFromCoordinate(Vector2D v) = 0;
+        virtual Coordinate GetCoordinateFromPosition(Vector2D v) = 0;
 
         /// <summary>
         /// Add an agent to a random position in the world

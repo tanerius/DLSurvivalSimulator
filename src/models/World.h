@@ -1,14 +1,15 @@
 #pragma once
 #include <IWorld.h>
 #include <vector>
-#include <set>
+#include <unordered_set>
 
 namespace DLS
 {
     class World : public IWorld
     {
     private:
-        std::set<int> m_activeAgents;
+        std::unordered_set<int> m_activeAgents;
+        Vector2D m_cellSize;
     protected:
         std::vector<CellInfo> m_worldCells;
         int m_sizeX;
@@ -18,8 +19,8 @@ namespace DLS
 
     public:
         virtual Coordinate AddAgentToWorld(IAgent* agent);
-        virtual Vector2D GetCoordinateFromPosition(Coordinate c);
-        virtual Coordinate GetWorldPositionFromCoordinate(Vector2D v);
+        virtual Vector2D GetCenteredPositionFromCoordinate(Coordinate c);
+        virtual Coordinate GetCoordinateFromPosition(Vector2D v);
         virtual CellInfo GetCellType(Coordinate c);
         virtual Coordinate GetCoordinateFromCellIndex(int index);
         virtual Coordinate GetWorldSize();
