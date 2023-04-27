@@ -24,7 +24,7 @@ namespace DLS
         virtual CellInfo GetCellType(Coordinate c);
         virtual Coordinate GetCoordinateFromCellIndex(int index);
         virtual Coordinate GetWorldSize();
-        virtual void SetSetType(Coordinate c, CellInfo info);
+        virtual void SetCellType(Coordinate c, CellInfo info);
         virtual void SetWorldSize(Coordinate size);
         virtual void Update();
     };

@@ -8,9 +8,7 @@ DLS::Coordinate DLS::World::AddAgentToWorld(DLS::IAgent* agent)
     int mod = m_sizeX * m_sizeY;
     int r = GenerateRandomNumber(0, mod);
     int count = 0;
-    DLS::Coordinate newCoord;
-    newCoord.X = -1;
-    newCoord.Y = -1;
+    DLS::Coordinate newCoord = { -1, -1};
     while(m_activeAgents.find(r) != m_activeAgents.end())
     {
         r = (r+1) % mod;
@@ -68,3 +66,15 @@ DLS::Coordinate DLS::World::GetCoordinateFromCellIndex(int index)
 {
     return {index % m_sizeX, index / m_sizeX};
 }
+
+DLS::Coordinate DLS::World::GetWorldSize()
+{
+    return {m_sizeX, m_sizeY};
+}
+
+void DLS::World::SetCellType(Coordinate c, CellInfo info)
+{
+    int index = c.X + c.Y*m_sizeX;
+    m_worldCells[index] = info;
+}
+

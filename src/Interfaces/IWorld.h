@@ -33,7 +33,7 @@ namespace DLS
         /// <summary>
         /// Sets the type of cell
         /// </summary>
-        virtual void SetSetType(Coordinate c, CellInfo info) = 0;
+        virtual void SetCellType(Coordinate c, CellInfo info) = 0;
 
         /// <summary>
         /// Returns the coordinate of a cell based on a linear index
