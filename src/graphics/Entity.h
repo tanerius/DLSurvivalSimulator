@@ -5,9 +5,11 @@
 
 namespace DLS 
 {
-    class Entity : public IAgent, public sf::CircleShape
+    class Entity : public IAgent
     {
         private:
+            sf::RenderWindow* m_context { nullptr };
+            sf::CircleShape m_shape{ sf::CircleShape(20.0, 10) };
         const   float       m_maxSpeed  {4.0};
         const   float       m_friction  {0.15};
                 bool        m_isAlive   {true};
@@ -23,15 +25,11 @@ namespace DLS
         void ApplyFriction();
         /// @brief prevent drifting
         void ApplyDriftCorrection();
+        void GetInputPlayer();
 
 
         public:
-        Entity() :
-          m_isAlive(true),
-          sf::CircleShape(20.0, 10)
-           { 
-             
-           }
+        Entity(sf::RenderWindow* context);
 
         float MaxSpeed() const { return m_maxSpeed; }
 
