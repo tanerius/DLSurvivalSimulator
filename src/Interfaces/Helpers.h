@@ -14,6 +14,8 @@ namespace DLS
     {
         int X;
         int Y;
+
+        bool IsValid() { return (X > -1 && Y > -1); }
     };
 
     struct Vector2D

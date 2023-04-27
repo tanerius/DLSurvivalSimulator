@@ -66,7 +66,7 @@ namespace DLS
         private:
         std::vector<Level*> m_levels;
         std::vector<int> m_outputs;
-    }
+    };
 
 
 }

@@ -3,13 +3,22 @@
 #include <vector>
 #include <IAgent.h>
 
+DLS::World::World(Vector2D cellSize, Coordinate worldSize)
+{
+    m_sizeX = worldSize.X; 
+    m_sizeY = worldSize.Y;
+    m_cellSize = cellSize;
+    m_worldCells.resize(m_sizeX * m_sizeY, {0, 0, true});
+    m_activeAgents.clear();
+}
+
 DLS::Coordinate DLS::World::AddAgentToWorld(DLS::IAgent* agent)
 {
     int mod = m_sizeX * m_sizeY;
     int r = GenerateRandomNumber(0, mod);
     int count = 0;
     DLS::Coordinate newCoord = { -1, -1};
-    while(m_activeAgents.find(r) != m_activeAgents.end())
+    while(m_activeAgents.contains(r))
     {
         r = (r+1) % mod;
         count++;
@@ -78,3 +87,8 @@ void DLS::World::SetCellType(Coordinate c, CellInfo info)
     m_worldCells[index] = info;
 }
 
+void DLS::World::SetWorldSize(Coordinate size)
+{
+    m_sizeX = size.X;
+    m_sizeY = size.Y;
+}
