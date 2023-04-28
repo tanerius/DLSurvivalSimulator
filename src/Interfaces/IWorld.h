@@ -54,10 +54,5 @@ namespace DLS
         /// Sets the size of the world
         /// </summary>
         virtual void  SetWorldSize(Coordinate size) = 0;
-
-        /// <summary>
-        /// Update method
-        /// </summary>
-        virtual void Update() = 0;
     };
 }

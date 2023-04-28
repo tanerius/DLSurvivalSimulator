@@ -2,12 +2,12 @@
 #include <Helpers.h>
 #include <vector>
 #include <IAgent.h>
+#include <limits>
 
-DLS::World::World(Vector2D cellSize, Coordinate worldSize)
+DLS::World::World(Coordinate worldSize) : m_cellSize({0, 0})
 {
     m_sizeX = worldSize.X; 
     m_sizeY = worldSize.Y;
-    m_cellSize = cellSize;
     m_worldCells.resize(m_sizeX * m_sizeY, {0, 0, true});
     m_activeAgents.clear();
 }
@@ -38,14 +38,14 @@ DLS::Vector2D DLS::World::GetCenteredPositionFromCoordinate(DLS::Coordinate c)
         ret.y = -1;
     }
 
-    ret.x = (m_cellSize.x / 2) * (c.X + 1);
-    ret.y = (m_cellSize.y / 2) * (c.Y + 1);
+    ret.x = m_cellSize.x * c.X + m_cellSize.x / 2;
+    ret.y = m_cellSize.y * c.Y + m_cellSize.y / 2;
     return ret;
 }
 
 DLS::Coordinate DLS::World::GetCoordinateFromPosition(DLS::Vector2D v)
 {
-    float minDistance = MAXFLOAT;
+    float minDistance = std::numeric_limits<float>::max();
     DLS::Coordinate ret = {-1, -1};
     
     for(int x0 = 0; x0 < m_sizeX; x0++)
@@ -104,4 +104,14 @@ int DLS::World::GenerateRandomNumber(int min, int max)
     std::uniform_int_distribution<> distrib(min, max);
  
     return distrib(gen);
+}
+
+void DLS::World::SetCellSize(Vector2D size)
+{
+    m_cellSize = size;
+}
+
+DLS::Vector2D DLS::World::GetCellSize() const 
+{
+    return m_cellSize;
 }

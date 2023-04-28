@@ -10,7 +10,7 @@ void DrawTestWindow()
     window.setFramerateLimit(60); // set the framerate
 
     DLS::Entity shape(&window);
-    DLS::WorldRenderer world({50, 50}, {30, 30}, window);
+    //DLS::WorldRenderer world({50, 50}, {30, 30}, &window);
 
     // run the program as long as the window is open
     while (window.isOpen())
@@ -42,6 +42,7 @@ void DrawTestWindow()
 
 int main()
 {
-    DrawTestWindow();
+    DLS::WorldRenderer world({ 800,600 }, { 10,10 });
+    world.Run();
     return 0;
 }

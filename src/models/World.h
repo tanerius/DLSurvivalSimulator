@@ -21,10 +21,12 @@ namespace DLS
         int m_sizeY;
 
         int GenerateRandomNumber(int min, int max);
+        void SetCellSize(Vector2D size);
+        Vector2D GetCellSize() const;
 
     public:
-        World(Vector2D cellSize, Coordinate worldSize);
-        virtual Coordinate AddAgentToWorld(IAgent* agent);
+        World(Coordinate worldSize);
+        virtual Coordinate AddAgentToWorld(IAgent* agent) = 0; // pure virtual here because any inherritor class should implement this
         virtual Vector2D GetCenteredPositionFromCoordinate(Coordinate c);
         virtual Coordinate GetCoordinateFromPosition(Vector2D v);
         virtual CellInfo GetCellType(Coordinate c);
@@ -32,7 +34,6 @@ namespace DLS
         virtual Coordinate GetWorldSize();
         virtual void SetCellType(Coordinate c, CellInfo info);
         virtual void SetWorldSize(Coordinate size);
-        virtual void Update() = 0; // pure virtual here because any inherritor class should implement this
         virtual void Draw() = 0; // pure virtual here because any inherritor class should implement this
     };
 }

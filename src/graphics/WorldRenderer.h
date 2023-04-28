@@ -8,10 +8,16 @@ namespace DLS
     class WorldRenderer : public World
     {
         private:
-            sf::RenderWindow* m_context { nullptr };
+            Coordinate m_screenSize;
+            sf::RenderWindow* m_context = nullptr;
+            std::vector<sf::RectangleShape*> m_tiles;
+
+            void CreateTiles();
+
         public:
-            WorldRenderer(Vector2D cellSize, Coordinate worldSize, sf::RenderWindow* context);
+            WorldRenderer(Coordinate screenSize, Coordinate worldSize);
             virtual void Draw();
-            virtual void Update();
+            void Run();
+            virtual Coordinate AddAgentToWorld(IAgent* agent);
     };
 }
