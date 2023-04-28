@@ -7,6 +7,11 @@ namespace DLS
 {
     class WorldRenderer : public World
     {
-
+        private:
+            sf::RenderWindow* m_context { nullptr };
+        public:
+            WorldRenderer(Vector2D cellSize, Coordinate worldSize, sf::RenderWindow* context);
+            virtual void Draw();
+            virtual void Update();
     };
 }

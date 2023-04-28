@@ -28,7 +28,10 @@ add_executable(DLSim
     "src/graphics/Entity.h"
     "src/graphics/Entity.cpp"
     "src/Interfaces/IWorld.h" 
-    "src/models/World.h" "src/models/World.cpp")
+    "src/models/World.h" 
+    "src/models/World.cpp"
+    "src/graphics/WorldRenderer.h"
+    "src/graphics/WorldRenderer.cpp")
 
 target_compile_features(DLSim PRIVATE cxx_std_20)
 

@@ -1,6 +1,7 @@
 #include "src/graphics/Entity.h"
 #include <SFML/Graphics.hpp>
 #include <Entity.h>
+#include <WorldRenderer.h>
 
 void DrawTestWindow()
 {
@@ -9,6 +10,7 @@ void DrawTestWindow()
     window.setFramerateLimit(60); // set the framerate
 
     DLS::Entity shape(&window);
+    DLS::WorldRenderer world({50, 50}, {30, 30}, window);
 
     // run the program as long as the window is open
     while (window.isOpen())
