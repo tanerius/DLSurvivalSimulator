@@ -18,10 +18,21 @@ namespace DLS
         bool IsValid() { return (X > -1 && Y > -1); }
     };
 
+    struct Polar
+    {
+        float r;
+        float theta; // in radian
+
+        Vector2D ToCartesian() const
+        {
+            return {r * std::cos(theta), r * std::sin(theta)};
+        }
+    };
+
     struct Vector2D
     {
-        float x;
-        float y;
+        float x; // r in polar
+        float y; // theta in polar
 
         float Magnitude()
         {
