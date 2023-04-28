@@ -92,3 +92,16 @@ void DLS::World::SetWorldSize(Coordinate size)
     m_sizeX = size.X;
     m_sizeY = size.Y;
 }
+
+void DLS::World::Draw()
+{
+    // draw
+}
+
+int DLS::World::GenerateRandomNumber(int min, int max)
+{
+    std::mt19937 gen(m_rd()); // Standard mersenne_twister_engine seeded with rd()
+    std::uniform_int_distribution<> distrib(min, max);
+ 
+    return distrib(gen);
+}

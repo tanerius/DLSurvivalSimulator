@@ -1,6 +1,6 @@
 #pragma once
 #include "../Interfaces/IAgent.h"
-#include "Helpers.h"
+#include "../Interfaces/Helpers.h"
 #include <SFML/Graphics.hpp>
 
 namespace DLS 

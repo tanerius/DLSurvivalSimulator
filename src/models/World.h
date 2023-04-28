@@ -3,6 +3,7 @@
 #include <IWorld.h>
 #include <vector>
 #include <unordered_set>
+#include <random>
 
 namespace DLS
 {
@@ -11,6 +12,7 @@ namespace DLS
     private:
         std::unordered_set<int> m_activeAgents;
         Vector2D m_cellSize;
+        std::random_device m_rd;
 
         World() = delete;
     protected:
@@ -18,7 +20,7 @@ namespace DLS
         int m_sizeX;
         int m_sizeY;
 
-        int GenerateRandomNumber(int mix, int max);
+        int GenerateRandomNumber(int min, int max);
 
     public:
         World(Vector2D cellSize, Coordinate worldSize);
@@ -30,6 +32,7 @@ namespace DLS
         virtual Coordinate GetWorldSize();
         virtual void SetCellType(Coordinate c, CellInfo info);
         virtual void SetWorldSize(Coordinate size);
-        virtual void Update();
+        virtual void Update() = 0; // pure virtual here because any inherritor class should implement this
+        virtual void Draw() = 0; // pure virtual here because any inherritor class should implement this
     };
 }

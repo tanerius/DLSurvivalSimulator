@@ -11,6 +11,11 @@ namespace DLS
     {
     public:
         /// <summary>
+        /// Method for drawing the world and its children
+        /// </summary>
+        virtual void Draw() = 0;
+
+        /// <summary>
         /// Get a center world position from a coordinate
         /// </summary>
         virtual Vector2D GetCenteredPositionFromCoordinate(Coordinate c) = 0;
