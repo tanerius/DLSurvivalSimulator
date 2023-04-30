@@ -42,9 +42,6 @@ int main(void)
     //DLS::WorldRenderer world({ 800,600 }, { 10,10 });
     //world.Run();
     DrawTestWindow();
-    DLS::Vector2D v = {0, 0};
-    DLS::Vector2D n = DLS::Vector2D::Normalize(v);
-    std::cout << n.x << " : " << n.y;
 
     return 0;
 }

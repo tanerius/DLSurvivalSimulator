@@ -27,7 +27,7 @@ void DLS::Agent::Accelerate()
 
     DLS::Vector2D forward = GetForwardVector();
     forward.x = forward.x * (1 + m_currentSpeed);
-    forward.x = forward.y * (1 + m_currentSpeed);
+    forward.y = forward.y * (1 + m_currentSpeed);
 
     m_position.x = m_position.x + forward.x;
     m_position.y = m_position.y + forward.y;
@@ -49,26 +49,16 @@ void DLS::Agent::RotateLeft()
 
 void DLS::Agent::Reverse()
 {
-    m_currentSpeed -= m_accelleration - m_friction;
+    m_currentSpeed += m_accelleration - m_friction;
+    if (m_currentSpeed > m_maxSpeed)
+        m_currentSpeed = m_maxSpeed;
 
-    if (m_currentSpeed < m_maxReverseSpeed)
-        m_currentSpeed = m_maxReverseSpeed;
+    DLS::Vector2D forward = GetForwardVector();
+    forward.x = forward.x * (1 + m_currentSpeed);
+    forward.y = forward.y * (1 + m_currentSpeed);
 
-    auto forward = GetForwardVector();
-
-    if(m_currentSpeed < 0)
-    {
-        forward.x = -forward.x * (1 + m_currentSpeed);
-        forward.x = -forward.y * (1 + m_currentSpeed);
-    }
-    else
-    {
-        forward.x = forward.x * (1 + m_currentSpeed);
-        forward.x = forward.y * (1 + m_currentSpeed);
-    }
-
-    m_position.x = m_position.x + forward.x;
-    m_position.y = m_position.y + forward.y;
+    m_position.x = m_position.x - forward.x;
+    m_position.y = m_position.y - forward.y;
 }
 
 void DLS::Agent::Stop()
