@@ -1,10 +1,12 @@
+#define _USE_MATH_DEFINES
 #include "Agent.h"
 #include <cmath>
 
 DLS::Agent::Agent(DLS::Vector2D position) :
     m_position(DLS::Vector2D::Normalize(position))
 {
-
+    m_forward.r = 1;
+    m_forward.theta = 0;
 }
 
 DLS::Vector2D DLS::Agent::GetForwardVector() const 
