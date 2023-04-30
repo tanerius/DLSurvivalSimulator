@@ -25,11 +25,13 @@ add_executable(DLSim
     "main.cpp"
     "src/Network.h"
     "src/Interfaces/Helpers.h"
-    "src/graphics/Entity.h"
-    "src/graphics/Entity.cpp"
+    "src/graphics/AgentRenderer.h"
+    "src/graphics/AgentRenderer.cpp"
     "src/Interfaces/IWorld.h" 
     "src/models/World.h" 
     "src/models/World.cpp"
+    "src/models/Agent.h" 
+    "src/models/Agent.cpp"
     "src/graphics/WorldRenderer.h"
     "src/graphics/WorldRenderer.cpp")
 
