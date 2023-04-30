@@ -28,12 +28,20 @@ namespace DLS
             return sqrt(x*x + y*y);
         }
 
-        static Vector2D Normalize(Vector2D v)
+        static Vector2D Normalize(Vector2D& v)
         {
             float mag = v.Magnitude();
             Vector2D ret;
-            ret.x = v.x/mag;
-            ret.y = v.y/mag;
+            if(mag > 0)
+            {
+                ret.x = v.x/mag;
+                ret.y = v.y/mag;
+            }
+            else
+            {
+                ret.x = 0;
+                ret.y = 0;
+            }
             return ret;
         }
 

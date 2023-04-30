@@ -8,6 +8,7 @@ DLS::AgentRenderer::AgentRenderer(sf::RenderWindow* context, Vector2D startingPo
     m_shape = new sf::CircleShape(20.0, 10);
     m_shape->setFillColor(sf::Color(100, 250, 50));
     m_shape->setPosition(sf::Vector2f(startingPosition.x, startingPosition.y));
+    m_shape->setOrigin(sf::Vector2f(20.f, 20.f));
 }
 
 void DLS::AgentRenderer::GetInputPlayer()
@@ -39,13 +40,25 @@ bool DLS::AgentRenderer::HasCollided()
 
 void DLS::AgentRenderer::Update()
 {
-    GetInputPlayer();
     Agent::Update();
+    GetInputPlayer();
 }
 
 void DLS::AgentRenderer::Draw()
 {
     auto newPos = GetPositionVector();
+    auto rot = GetForwardVector();
+    rot.x *= 50.0f;
+    rot.y *= 50.0f;
     m_shape->setPosition(newPos.x, newPos.y);
     m_context->draw(*m_shape);
+
+    // define the position of the triangle's points
+    m_line[0].position = sf::Vector2f(newPos.x, newPos.y);
+    m_line[1].position = sf::Vector2f(newPos.x + rot.x, newPos.y + rot.y);
+    // define the color of the triangle's points
+    m_line[0].color = sf::Color::Red;
+    m_line[1].color = sf::Color::Red;
+    m_context->draw(m_line);
+
 }

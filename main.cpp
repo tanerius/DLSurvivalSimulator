@@ -1,15 +1,16 @@
 #include <SFML/Graphics.hpp>
 #include <AgentRenderer.h>
 #include <WorldRenderer.h>
+#include <iostream>
 
 void DrawTestWindow()
 {
     sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
-    
+
     window.setFramerateLimit(60); // set the framerate
 
-    DLS::AgentRenderer shape(&window, {200,200});
-    //DLS::WorldRenderer world({50, 50}, {30, 30}, &window);
+    DLS::AgentRenderer shape(&window, {200, 200});
+    // DLS::WorldRenderer world({50, 50}, {30, 30}, &window);
 
     // run the program as long as the window is open
     while (window.isOpen())
@@ -23,8 +24,6 @@ void DrawTestWindow()
                 window.close();
         }
 
-        
-
         // clear the window with black color
         window.clear(sf::Color::Black);
 
@@ -33,17 +32,19 @@ void DrawTestWindow()
         shape.Update();
         shape.Draw();
 
-
         // end the current frame
         window.display();
     }
-
 }
 
-int main()
+int main(void)
 {
     //DLS::WorldRenderer world({ 800,600 }, { 10,10 });
     //world.Run();
     DrawTestWindow();
+    DLS::Vector2D v = {0, 0};
+    DLS::Vector2D n = DLS::Vector2D::Normalize(v);
+    std::cout << n.x << " : " << n.y;
+
     return 0;
 }
