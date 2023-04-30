@@ -11,11 +11,14 @@ namespace DLS
             Coordinate m_screenSize;
             sf::RenderWindow* m_context = nullptr;
             std::vector<sf::RectangleShape*> m_tiles;
+            std::vector<IAgent*> m_agents;
 
             void CreateTiles();
 
         public:
             WorldRenderer(Coordinate screenSize, Coordinate worldSize);
+
+            inline sf::RenderWindow* GetContext() { return m_context; }
             virtual void Draw();
             void Run();
             virtual Coordinate AddAgentToWorld(IAgent* agent);

@@ -82,8 +82,3 @@ void DLS::Agent::Update()
     if(std::abs(m_currentSpeed) < m_friction)
         m_currentSpeed = 0;
 }
-
-void DLS::Agent::Draw()
-{
-    // Implemented tor test instancing
-}

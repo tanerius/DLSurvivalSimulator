@@ -30,18 +30,29 @@ void DrawTestWindow()
         // draw everything here...
         // window.draw(...);
         shape.Update();
-        shape.Draw();
 
         // end the current frame
         window.display();
     }
 }
 
+DLS::AgentRenderer* CreateAgent(DLS::WorldRenderer& currentWorld,  DLS::Coordinate where)
+{
+    auto agentPos = currentWorld.GetCenteredPositionFromCoordinate(where);
+
+    return new DLS::AgentRenderer(currentWorld.GetContext(), agentPos);
+}
+
 int main(void)
 {
-    //DLS::WorldRenderer world({ 800,600 }, { 10,10 });
-    //world.Run();
-    DrawTestWindow();
+    DLS::WorldRenderer world({ 1000, 1000 }, { 50, 50 });
+    
+    auto agent = CreateAgent(world, {3,3});
+    world.AddAgentToWorld(agent);    
+
+    world.Run();
+
+    delete agent;
 
     return 0;
 }

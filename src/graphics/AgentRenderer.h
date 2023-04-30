@@ -13,12 +13,11 @@ namespace DLS
             sf::VertexArray m_line {sf::Lines, 2};
 
         void GetInputPlayer();
-
+        void Draw();
 
         public:
         AgentRenderer(sf::RenderWindow* context, Vector2D startingPosition);
         virtual bool HasCollided() override;
         virtual void Update() override;
-        virtual void Draw() override;
     };
 }

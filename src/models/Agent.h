@@ -33,7 +33,6 @@ namespace DLS
         virtual void RotateRight() override;
         virtual void Reverse() override;
         virtual void Stop() override;
-        virtual void Draw() override = 0;
         virtual bool IsAlive() const override { return m_isAlive; };
         virtual bool HasCollided() override = 0;
         virtual void Update() override;

@@ -42,6 +42,7 @@ void DLS::AgentRenderer::Update()
 {
     Agent::Update();
     GetInputPlayer();
+    Draw();
 }
 
 void DLS::AgentRenderer::Draw()

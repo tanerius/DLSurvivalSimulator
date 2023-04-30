@@ -16,7 +16,6 @@ namespace DLS
         virtual void RotateRight() = 0;
         virtual void Reverse() = 0;
         virtual void Stop() = 0;
-        virtual void Draw() = 0;
         virtual Vector2D GetForwardVector() const = 0;
         virtual Vector2D GetPositionVector() const = 0;
 

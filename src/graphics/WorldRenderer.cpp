@@ -31,6 +31,7 @@ DLS::WorldRenderer::WorldRenderer(DLS::Coordinate screenSize, DLS::Coordinate wo
 {
     
     m_context = new sf::RenderWindow(sf::VideoMode(screenSize.X, screenSize.Y), "Deep Learning Simulator");
+    m_context->setFramerateLimit(60); // set the framerate
     // Calculate how big an agent can be
     int maxSize = std::max(worldSize.X, worldSize.Y);
     float minWidth = std::min((float)screenSize.X, (float)screenSize.Y);
@@ -38,6 +39,7 @@ DLS::WorldRenderer::WorldRenderer(DLS::Coordinate screenSize, DLS::Coordinate wo
     SetCellSize({ minWidth, minWidth });
     m_screenSize = screenSize;
     m_tiles.reserve(m_sizeX * m_sizeY);
+    m_agents.reserve(m_sizeX * m_sizeY);
 
     CreateTiles();
 }
@@ -48,6 +50,13 @@ void DLS::WorldRenderer::Draw()
     for (auto tile : m_tiles)
     {
         m_context->draw(*tile);
+    }
+
+    // draw the agents
+    for (IAgent* agent : m_agents)
+    {
+        if(agent->IsAlive())
+            agent->Update();
     }
 }
 
@@ -78,7 +87,6 @@ void DLS::WorldRenderer::Run()
 
 DLS::Coordinate DLS::WorldRenderer::AddAgentToWorld(IAgent* agent)
 {
-
-
-    return {-1, -1};
+    m_agents.push_back(agent);
+    return GetCoordinateFromPosition(agent->GetPositionVector());
 }
