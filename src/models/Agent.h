@@ -3,6 +3,7 @@
 #include <IAgent.h>
 #include <vector>
 #include <random>
+#include "Sensor.h"
 
 namespace DLS 
 {
@@ -19,6 +20,7 @@ namespace DLS
 
                 Vector2D    m_position;
                 Polar       m_forward;
+                Sensor* m_sensor{ nullptr };
         
         public:
         Agent(Vector2D position);
@@ -28,6 +30,8 @@ namespace DLS
         virtual void Accelerate() override;
         virtual Vector2D GetForwardVector() const override;
         virtual Vector2D GetPositionVector() const override { return m_position; };
+        virtual float GetOrientationAngle() const override { return m_forward.theta; };
+        std::vector<Vector2D> GetSensorVectors();
         float GetSpeed() const override;
         virtual void RotateLeft() override;
         virtual void RotateRight() override;

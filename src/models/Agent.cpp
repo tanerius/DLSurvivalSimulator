@@ -1,12 +1,14 @@
 #define _USE_MATH_DEFINES
 #include "Agent.h"
 #include <cmath>
+#include <vector>
 
 DLS::Agent::Agent(DLS::Vector2D position) :
     m_position(position)
 {
     m_forward.r = 1;
     m_forward.theta = 0;
+    m_sensor = new Sensor(this);
 }
 
 DLS::Vector2D DLS::Agent::GetForwardVector() const 
@@ -31,6 +33,11 @@ void DLS::Agent::Accelerate()
 
     m_position.x = m_position.x + forward.x;
     m_position.y = m_position.y + forward.y;
+}
+
+std::vector<DLS::Vector2D> DLS::Agent::GetSensorVectors()
+{
+    return m_sensor->GetRays();
 }
 
 void DLS::Agent::RotateRight()
@@ -81,4 +88,6 @@ void DLS::Agent::Update()
 
     if(std::abs(m_currentSpeed) < m_friction)
         m_currentSpeed = 0;
+
+    m_sensor->Update();
 }

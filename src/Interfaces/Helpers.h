@@ -25,7 +25,7 @@ namespace DLS
 
         float Magnitude()
         {
-            return sqrt(x*x + y*y);
+            return std::sqrt(x*x + y*y);
         }
 
         static Vector2D Normalize(Vector2D& v)
@@ -47,7 +47,7 @@ namespace DLS
 
         static float Distance(Vector2D v1, Vector2D v2)
         {
-            return sqrt((v2.x-v1.x)*(v2.x-v1.x) + (v2.y-v1.y)*(v2.y-v1.y));
+            return std::sqrt((v2.x-v1.x)*(v2.x-v1.x) + (v2.y-v1.y)*(v2.y-v1.y));
         }
     };
 

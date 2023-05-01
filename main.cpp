@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <AgentRenderer.h>
 #include <WorldRenderer.h>
+#include <Sensor.h>
 #include <iostream>
 
 void DrawTestWindow()
@@ -49,6 +50,7 @@ DLS::AgentRenderer* CreateAgent(DLS::WorldRenderer& currentWorld,  DLS::Coordina
 
 int main(void)
 {
+    DLS::Sensor* s = nullptr;
     DLS::WorldRenderer world({ 1000, 1000 }, { 50, 50 });
     
     auto agent = CreateAgent(world, {3,3});

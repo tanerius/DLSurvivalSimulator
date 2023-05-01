@@ -12,12 +12,14 @@ namespace DLS
     public:
         virtual void Accelerate() = 0;
         virtual float GetSpeed() const = 0;
+        virtual float GetOrientationAngle() const = 0;
         virtual void RotateLeft() = 0;
         virtual void RotateRight() = 0;
         virtual void Reverse() = 0;
         virtual void Stop() = 0;
         virtual Vector2D GetForwardVector() const = 0;
         virtual Vector2D GetPositionVector() const = 0;
+
 
         /// <summary>
         /// Method to check if agent is alive

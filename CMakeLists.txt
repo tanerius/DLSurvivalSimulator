@@ -33,7 +33,8 @@ add_executable(DLSim
     "src/models/Agent.h" 
     "src/models/Agent.cpp"
     "src/graphics/WorldRenderer.h"
-    "src/graphics/WorldRenderer.cpp")
+    "src/graphics/WorldRenderer.cpp" 
+    "src/models/Sensor.h" "src/models/Sensor.cpp")
 
 target_compile_features(DLSim PRIVATE cxx_std_20)
 

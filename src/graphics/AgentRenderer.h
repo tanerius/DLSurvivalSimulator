@@ -10,7 +10,8 @@ namespace DLS
         private:
             sf::RenderWindow* m_context { nullptr };
             sf::CircleShape* m_shape {nullptr};
-            sf::VertexArray m_line {sf::Lines, 2};
+            sf::VertexArray m_forwardVector {sf::Lines, 2};
+            sf::VertexArray m_sensors{ sf::Lines, 6 };
 
         void GetInputPlayer();
         void Draw();
