@@ -5,14 +5,16 @@
 
 namespace DLS
 {
+    
     class Sensor
     {
     private:
         IAgent* m_owner = nullptr;
         const float m_range = 100.f;
-        const int m_rayCount = 3;
+        const int m_rayCount = 5;
         float m_raySpread = 0;
         std::vector<Vector2D> m_rays;
+
 
     public:
         Sensor(IAgent* owner);

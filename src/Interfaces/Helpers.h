@@ -61,4 +61,9 @@ namespace DLS
             return {r * std::cos(theta), r * std::sin(theta)};
         }
     };
+
+    struct Intersection
+    {
+
+    };
 }
