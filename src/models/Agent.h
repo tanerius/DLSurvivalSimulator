@@ -32,6 +32,7 @@ namespace DLS
         virtual Vector2D GetPositionVector() const override { return m_position; };
         virtual float GetOrientationAngle() const override { return m_forward.theta; };
         std::vector<Vector2D> GetSensorVectors();
+        int GetSensorRayCount() const { return m_sensor->GetRayCount(); }
         float GetSpeed() const override;
         virtual void RotateLeft() override;
         virtual void RotateRight() override;

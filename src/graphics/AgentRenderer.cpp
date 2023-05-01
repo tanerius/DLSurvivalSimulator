@@ -9,6 +9,10 @@ DLS::AgentRenderer::AgentRenderer(sf::RenderWindow* context, Vector2D startingPo
     m_shape->setFillColor(sf::Color(100, 250, 50));
     m_shape->setPosition(sf::Vector2f(startingPosition.x, startingPosition.y));
     m_shape->setOrigin(sf::Vector2f(agentRadius / 2, agentRadius / 2));
+
+    m_sensors.clear();
+    m_sensors.setPrimitiveType(sf::Lines);
+    m_sensors.resize(GetSensorRayCount()*2);
 }
 
 void DLS::AgentRenderer::GetInputPlayer()
@@ -64,18 +68,14 @@ void DLS::AgentRenderer::Draw()
     m_context->draw(m_forwardVector);
 
     // Draw the sensors vectors
-    m_sensors[0].position = sf::Vector2f(newPos.x, newPos.y);
-    m_sensors[1].position = sf::Vector2f(getSensors[0].x, getSensors[0].y);
-    m_sensors[2].position = sf::Vector2f(newPos.x, newPos.y);
-    m_sensors[3].position = sf::Vector2f(getSensors[1].x, getSensors[1].y);
-    m_sensors[4].position = sf::Vector2f(newPos.x, newPos.y);
-    m_sensors[5].position = sf::Vector2f(getSensors[2].x, getSensors[2].y);
-
-    m_sensors[0].color = sf::Color::Green;
-    m_sensors[1].color = sf::Color::Green;
-    m_sensors[2].color = sf::Color::Green;
-    m_sensors[3].color = sf::Color::Green;
-    m_sensors[4].color = sf::Color::Green;
-    m_sensors[5].color = sf::Color::Green;
+    int rayCount = GetSensorRayCount();
+    for (int i = 0; i < rayCount; i++)
+    {
+        int j = 2 * i;
+        m_sensors[j].position = sf::Vector2f(newPos.x, newPos.y);
+        m_sensors[j+1].position = sf::Vector2f(getSensors[i].x, getSensors[i].y);
+        m_sensors[j].color = sf::Color::Green;
+        m_sensors[j+1].color = sf::Color::Green;
+    }
     m_context->draw(m_sensors);
 }

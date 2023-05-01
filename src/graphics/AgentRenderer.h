@@ -11,7 +11,7 @@ namespace DLS
             sf::RenderWindow* m_context { nullptr };
             sf::CircleShape* m_shape {nullptr};
             sf::VertexArray m_forwardVector {sf::Lines, 2};
-            sf::VertexArray m_sensors{ sf::Lines, 6 };
+            sf::VertexArray m_sensors;
 
         void GetInputPlayer();
         void Draw();
