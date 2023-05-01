@@ -29,6 +29,8 @@ namespace DLS
         // Methods from IEntity start here
         virtual EntityType Type() const override { return m_entityType; }
         virtual Vector2D PositionVector() const override { return m_position; };
+        virtual bool HasCollided() override = 0;
+        virtual void Update() override;
 
         // Methids from IEntity finish here
 
@@ -45,7 +47,5 @@ namespace DLS
         virtual void Reverse() override;
         virtual void Stop() override;
         virtual bool IsAlive() const override { return m_isAlive; };
-        virtual bool HasCollided() override = 0;
-        virtual void Update() override;
     };
 }

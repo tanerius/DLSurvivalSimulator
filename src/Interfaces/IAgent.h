@@ -10,11 +10,6 @@ namespace DLS
     class IAgent : public IEntity
     {
     public:
-        // Methods from IEntity start here
-        virtual EntityType Type() const override = 0;
-        virtual Vector2D PositionVector() const override = 0;
-
-        // Methids from IEntity finish here
         virtual void Accelerate() = 0;
         virtual float GetSpeed() const = 0;
         virtual float GetOrientationAngle() const = 0;
@@ -29,16 +24,5 @@ namespace DLS
         /// </summary> 
         /// <returns>True == alive otherwise false</returns>
         virtual bool IsAlive() const = 0;
-
-        /// <summary>
-        /// Method to check if agent has collided with something
-        /// </summary>
-        /// <returns>True == agent has collided otherwise false</returns>
-        virtual bool HasCollided() = 0;
-
-        /// <summary>
-        /// Method to be called on each frame which will update enity values
-        /// </summary>
-        virtual void Update() = 0;
     };
 }
