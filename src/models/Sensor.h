@@ -3,7 +3,6 @@
 #include <IAgent.h>
 #include <vector>
 
-
 namespace DLS
 {
     class Sensor
