@@ -1,14 +1,14 @@
 #include "AgentRenderer.h"
 #include <cmath>
 
-DLS::AgentRenderer::AgentRenderer(sf::RenderWindow* context, Vector2D startingPosition) :
+DLS::AgentRenderer::AgentRenderer(sf::RenderWindow* context, Vector2D startingPosition, float agentRadius) :
     m_context(context),
     Agent(startingPosition)
 {
-    m_shape = new sf::CircleShape(20.0, 10);
+    m_shape = new sf::CircleShape(agentRadius / 2, 10);
     m_shape->setFillColor(sf::Color(100, 250, 50));
     m_shape->setPosition(sf::Vector2f(startingPosition.x, startingPosition.y));
-    m_shape->setOrigin(sf::Vector2f(20.f, 20.f));
+    m_shape->setOrigin(sf::Vector2f(agentRadius / 2, agentRadius / 2));
 }
 
 void DLS::AgentRenderer::GetInputPlayer()

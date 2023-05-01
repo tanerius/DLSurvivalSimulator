@@ -22,10 +22,10 @@ namespace DLS
 
         int GenerateRandomNumber(int min, int max);
         void SetCellSize(Vector2D size);
-        Vector2D GetCellSize() const;
 
     public:
         World(Coordinate worldSize);
+        Vector2D GetCellSize() const;
         virtual Coordinate AddAgentToWorld(IAgent* agent) = 0; // pure virtual here because any inherritor class should implement this
         virtual Vector2D GetCenteredPositionFromCoordinate(Coordinate c);
         virtual Coordinate GetCoordinateFromPosition(Vector2D v);

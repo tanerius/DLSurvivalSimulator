@@ -9,7 +9,7 @@ void DrawTestWindow()
 
     window.setFramerateLimit(60); // set the framerate
 
-    DLS::AgentRenderer shape(&window, {200, 200});
+    DLS::AgentRenderer shape(&window, {200, 200}, 20.f);
     // DLS::WorldRenderer world({50, 50}, {30, 30}, &window);
 
     // run the program as long as the window is open
@@ -39,8 +39,12 @@ void DrawTestWindow()
 DLS::AgentRenderer* CreateAgent(DLS::WorldRenderer& currentWorld,  DLS::Coordinate where)
 {
     auto agentPos = currentWorld.GetCenteredPositionFromCoordinate(where);
+    auto cellSize = currentWorld.GetCellSize();
+    float agentSize = std::min(cellSize.x, cellSize.y);
 
-    return new DLS::AgentRenderer(currentWorld.GetContext(), agentPos);
+    agentSize = agentSize * 0.7f;
+
+    return new DLS::AgentRenderer(currentWorld.GetContext(), agentPos, agentSize);
 }
 
 int main(void)
