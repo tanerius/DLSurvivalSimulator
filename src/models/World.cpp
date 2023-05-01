@@ -4,7 +4,7 @@
 #include <IAgent.h>
 #include <limits>
 
-DLS::World::World(Coordinate worldSize) : m_cellSize({0, 0})
+DLS::World::World(Coordinate worldSize) : m_cellSize({10, 10})
 {
     m_sizeX = worldSize.X; 
     m_sizeY = worldSize.Y;
