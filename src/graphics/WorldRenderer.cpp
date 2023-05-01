@@ -88,5 +88,5 @@ void DLS::WorldRenderer::Run()
 DLS::Coordinate DLS::WorldRenderer::AddAgentToWorld(IAgent* agent)
 {
     m_agents.push_back(agent);
-    return GetCoordinateFromPosition(agent->GetPositionVector());
+    return GetCoordinateFromPosition(agent->PositionVector());
 }

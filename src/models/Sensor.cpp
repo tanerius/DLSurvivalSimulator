@@ -26,7 +26,7 @@ void DLS::Sensor::Update()
             (float)i / (m_rayCount - 1)
         ) - agentAngle - (M_PI / 2);
 
-        auto startPoint = m_owner->GetPositionVector();
+        auto startPoint = m_owner->PositionVector();
         Vector2D endPoint = {
             startPoint.x - static_cast<float>(std::sin(rayAngle)) * m_range,
             startPoint.y - static_cast<float>(std::cos(rayAngle)) * m_range

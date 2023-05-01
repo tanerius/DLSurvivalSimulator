@@ -51,7 +51,7 @@ void DLS::AgentRenderer::Update()
 
 void DLS::AgentRenderer::Draw()
 {
-    auto newPos = GetPositionVector();
+    auto newPos = PositionVector();
     auto rot = GetForwardVector();
     auto getSensors = GetSensorVectors();
     rot.x *= 50.0f;

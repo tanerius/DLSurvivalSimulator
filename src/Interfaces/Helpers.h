@@ -3,6 +3,12 @@
 
 namespace DLS
 {
+    enum class EntityType : short 
+    { 
+        Obstacle = 0,
+        Agent
+    };
+
     struct CellInfo 
     {
         float FeromoneLevel;
