@@ -12,7 +12,7 @@ namespace DLS
             sf::RectangleShape* m_shape = nullptr;
             
         public:
-            WallRenderer(sf::RenderWindow* context, Vector2D position);
+            WallRenderer(sf::RenderWindow* context, Vector2D position, Vector2D cellSize);
             inline sf::RenderWindow* GetContext() { return m_context; }
             bool HasCollided() override { return false; }
             void Update() override;

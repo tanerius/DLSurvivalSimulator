@@ -16,6 +16,11 @@ namespace DLS
         virtual Coordinate AddAgentToWorld(IAgent* agent) = 0;
 
         /// <summary>
+        /// Add an agent to a random position in the world
+        /// </summary>
+        virtual Coordinate AddObstacles(Coordinate coordArray[], int arraySize) = 0;
+
+        /// <summary>
         /// Method for drawing the world and its children
         /// </summary>
         virtual void Draw() = 0;
