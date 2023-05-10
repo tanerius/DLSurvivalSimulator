@@ -9,11 +9,18 @@ namespace DLS
         Agent
     };
 
+    enum class CellType : short 
+    { 
+        Flat = 0,
+        Wall,
+        Pitt
+    };
+
     struct CellInfo 
     {
+        CellType Type;
         float FeromoneLevel;
         float Toxicity;
-        bool Clean;
     };
 
     struct Coordinate

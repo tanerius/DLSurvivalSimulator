@@ -26,14 +26,16 @@ namespace DLS
     public:
         World(Coordinate worldSize);
         Vector2D GetCellSize() const;
-        virtual Coordinate AddAgentToWorld(IAgent* agent) = 0; // pure virtual here because any inherritor class should implement this
-        virtual Vector2D GetCenteredPositionFromCoordinate(Coordinate c);
-        virtual Coordinate GetCoordinateFromPosition(Vector2D v);
-        virtual CellInfo GetCellType(Coordinate c);
-        virtual Coordinate GetCoordinateFromCellIndex(int index);
-        virtual Coordinate GetWorldSize();
-        virtual void SetCellType(Coordinate c, CellInfo info);
-        virtual void SetWorldSize(Coordinate size);
-        virtual void Draw() = 0; // pure virtual here because any inherritor class should implement this
+        virtual Coordinate AddAgentToWorld(IAgent* agent) override = 0; // pure virtual here because any inherritor class should implement this
+        void AddTerrain(Coordinate coordArray[], int arraySize, DLS::CellType type) override;
+        Vector2D GetCenteredPositionFromCoordinate(Coordinate c) override;
+        Coordinate GetCoordinateFromPosition(Vector2D v) override;
+        int GetIndexFromCoordinate(Coordinate coordinate) override;
+        CellInfo GetCellInfo(Coordinate c) override;
+        Coordinate GetCoordinateFromCellIndex(int index) override;
+        Coordinate GetWorldSize() override;
+        void SetCellType(Coordinate c, CellInfo info) override;
+        void SetWorldSize(Coordinate size) override;
+        virtual void Draw() override = 0; // pure virtual here because any inherritor class should implement this
     };
 }

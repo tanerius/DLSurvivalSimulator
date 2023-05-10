@@ -16,9 +16,9 @@ namespace DLS
         virtual Coordinate AddAgentToWorld(IAgent* agent) = 0;
 
         /// <summary>
-        /// Add an agent to a random position in the world
+        /// Add an agent to an obstacle to a position in the world
         /// </summary>
-        virtual Coordinate AddObstacles(Coordinate coordArray[], int arraySize) = 0;
+        virtual void AddTerrain(Coordinate coordArray[], int arraySize, CellType type) = 0;
 
         /// <summary>
         /// Method for drawing the world and its children
@@ -28,7 +28,7 @@ namespace DLS
         /// <summary>
         /// Returns the type of cell
         /// </summary>
-        virtual CellInfo GetCellType(Coordinate c) = 0;
+        virtual CellInfo GetCellInfo(Coordinate c) = 0;
 
         /// <summary>
         /// Get a center world position from a coordinate
@@ -44,6 +44,11 @@ namespace DLS
         /// Returns the coordinate of a cell based on a linear index
         /// </summary>
         virtual Coordinate GetCoordinateFromCellIndex(int index) = 0;
+
+        /// <summary>
+        /// Returns the array index from the given coordinate
+        /// </summary>
+        virtual int GetIndexFromCoordinate(Coordinate coordinate) = 0;
 
         /// <summary>
         /// Returns the size of the world

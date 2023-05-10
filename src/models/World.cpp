@@ -8,7 +8,7 @@ DLS::World::World(Coordinate worldSize) : m_cellSize({10, 10})
 {
     m_sizeX = worldSize.X; 
     m_sizeY = worldSize.Y;
-    m_worldCells.resize(m_sizeX * m_sizeY, {0, 0, true});
+    m_worldCells.resize(m_sizeX * m_sizeY, {DLS::CellType::Flat, 0, 0});
     m_activeAgents.clear();
 }
 
@@ -27,6 +27,16 @@ DLS::Coordinate DLS::World::AddAgentToWorld(DLS::IAgent* agent)
     }
     m_activeAgents.insert(r);
     return GetCoordinateFromCellIndex(r);
+}
+
+void DLS::World::AddTerrain(DLS::Coordinate coordArray[], int arraySize, DLS::CellType type)
+{
+    for(int i = 0; i < arraySize; i++)
+    {
+        int index = GetIndexFromCoordinate(coordArray[i]);
+        m_worldCells[index].Type = type;
+    }
+    
 }
 
 DLS::Vector2D DLS::World::GetCenteredPositionFromCoordinate(DLS::Coordinate c)
@@ -65,7 +75,7 @@ DLS::Coordinate DLS::World::GetCoordinateFromPosition(DLS::Vector2D v)
     return ret;
 }
 
-DLS::CellInfo DLS::World::GetCellType(Coordinate c)
+DLS::CellInfo DLS::World::GetCellInfo(Coordinate c)
 {
     int index = c.X + c.Y*m_sizeX;
     return m_worldCells[index];
@@ -76,6 +86,11 @@ DLS::Coordinate DLS::World::GetCoordinateFromCellIndex(int index)
     return {index % m_sizeX, index / m_sizeX};
 }
 
+int DLS::World::GetIndexFromCoordinate(DLS::Coordinate c)
+{
+    return c.X + c.Y*m_sizeX;
+}
+
 DLS::Coordinate DLS::World::GetWorldSize()
 {
     return {m_sizeX, m_sizeY};
@@ -83,7 +98,7 @@ DLS::Coordinate DLS::World::GetWorldSize()
 
 void DLS::World::SetCellType(Coordinate c, CellInfo info)
 {
-    int index = c.X + c.Y*m_sizeX;
+    int index = GetIndexFromCoordinate(c);
     m_worldCells[index] = info;
 }
 
