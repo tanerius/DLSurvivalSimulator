@@ -20,6 +20,7 @@ namespace DLS
         /// </summary>
         /// <returns>True == agent has collided otherwise false</returns>
         virtual bool HasCollided() = 0;
+        virtual void SignalCollision() = 0;
         virtual Vector2D PositionVector() const = 0;
         virtual EntityType Type() const = 0;
         virtual void SetPosition(const Vector2D& pos) = 0;

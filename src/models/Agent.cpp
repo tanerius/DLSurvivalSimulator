@@ -81,6 +81,8 @@ void DLS::Agent::Stop()
 
 bool DLS::Agent::HasCollided()
 {
+    if (m_isCollided) return true;
+
     DLS::Box thisBox = GetCollisionBox();
 
         /*
