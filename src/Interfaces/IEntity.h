@@ -8,6 +8,8 @@ namespace DLS
     /// </summary>
     class IEntity
     {
+    private:
+        float m_sizeRadius = 50.0f; // for the collider
     public:
         /// <summary>
         /// Method to check if entity has collided with something

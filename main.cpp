@@ -34,10 +34,21 @@ int main(void)
     
     auto agent = CreateAgent(world, {3,3});
     world.AddEntityToWorld(agent);
+    auto size = world.GetWorldSize();
 
-    for (int i = 0; i < 10 ; i++)
+    for (int x = 0; x < size.X; x++)
     {
-        auto w = CreateWall(world, {0,i});
+        auto w = CreateWall(world, { x, 0 });
+        world.AddEntityToWorld(w);
+        w = CreateWall(world, { x, size.Y-1 });
+        world.AddEntityToWorld(w);
+    }
+
+    for (int y = 0; y < size.Y; y++)
+    {
+        auto w = CreateWall(world, { 0, y });
+        world.AddEntityToWorld(w);
+        w = CreateWall(world, { size.X - 1, y });
         world.AddEntityToWorld(w);
     }
 
