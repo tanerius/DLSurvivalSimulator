@@ -11,6 +11,6 @@ namespace DLS
     {
         public:
         virtual Coordinate GetCoordinate() const = 0;
-        virtual void SetCoordinate(const Coordinate c) = 0;
+        virtual void SetCoordinate(const Coordinate& c) = 0;
     };
 }

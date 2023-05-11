@@ -68,7 +68,7 @@ void DLS::Agent::Reverse()
     m_position.y = m_position.y - forward.y;
 }
 
-void DLS::Agent::SetPosition(Vector2D pos) 
+void DLS::Agent::SetPosition(const Vector2D& pos) 
 {
     m_position.x = pos.x;
     m_position.y = pos.y;

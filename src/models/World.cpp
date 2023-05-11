@@ -18,7 +18,7 @@ void DLS::World::AddEntityToWorld(DLS::IEntity* entity)
     m_activeEntities.push_back(entity);
 }
 
-DLS::Vector2D DLS::World::GetCenteredPositionFromCoordinate(DLS::Coordinate c)
+DLS::Vector2D DLS::World::GetCenteredPositionFromCoordinate(const DLS::Coordinate& c) const
 {
     DLS::Vector2D ret;
     if(c.X >= m_sizeX || c.Y >= m_sizeY)
@@ -32,7 +32,7 @@ DLS::Vector2D DLS::World::GetCenteredPositionFromCoordinate(DLS::Coordinate c)
     return ret;
 }
 
-DLS::Coordinate DLS::World::GetCoordinateFromPosition(DLS::Vector2D v)
+DLS::Coordinate DLS::World::GetCoordinateFromPosition(const DLS::Vector2D& v) const
 {
     float minDistance = std::numeric_limits<float>::max();
     DLS::Coordinate ret = {-1, -1};
@@ -54,34 +54,34 @@ DLS::Coordinate DLS::World::GetCoordinateFromPosition(DLS::Vector2D v)
     return ret;
 }
 
-DLS::CellInfo DLS::World::GetCellInfo(Coordinate c)
+DLS::CellInfo DLS::World::GetCellInfo(const Coordinate& c) const
 {
     int index = c.X + c.Y*m_sizeX;
     return m_worldCells[index];
 }
 
-DLS::Coordinate DLS::World::GetCoordinateFromCellIndex(int index)
+DLS::Coordinate DLS::World::GetCoordinateFromCellIndex(const int index) const
 {
     return {index % m_sizeX, index / m_sizeX};
 }
 
-int DLS::World::GetIndexFromCoordinate(DLS::Coordinate c)
+int DLS::World::GetIndexFromCoordinate(const DLS::Coordinate& c) const
 {
     return c.X + c.Y*m_sizeX;
 }
 
-DLS::Coordinate DLS::World::GetWorldSize()
+DLS::Coordinate DLS::World::GetWorldSize() const
 {
     return {m_sizeX, m_sizeY};
 }
 
-void DLS::World::SetCellType(Coordinate c, CellInfo info)
+void DLS::World::SetCellType(const Coordinate& c, const CellInfo& info)
 {
     int index = GetIndexFromCoordinate(c);
     m_worldCells[index] = info;
 }
 
-void DLS::World::SetWorldSize(Coordinate size)
+void DLS::World::SetWorldSize(const Coordinate& size)
 {
     m_sizeX = size.X;
     m_sizeY = size.Y;

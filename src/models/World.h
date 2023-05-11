@@ -25,16 +25,17 @@ namespace DLS
 
     public:
         World(Coordinate worldSize);
-        Vector2D GetCellSize() const;
+        virtual Vector2D GetCellSize() const override; // can be overriden if necessary
         void AddEntityToWorld(IEntity* entity) override; 
-        Vector2D GetCenteredPositionFromCoordinate(Coordinate c) override;
-        Coordinate GetCoordinateFromPosition(Vector2D v) override;
-        int GetIndexFromCoordinate(Coordinate coordinate) override;
-        CellInfo GetCellInfo(Coordinate c) override;
-        Coordinate GetCoordinateFromCellIndex(int index) override;
-        Coordinate GetWorldSize() override;
-        void SetCellType(Coordinate c, CellInfo info) override;
-        void SetWorldSize(Coordinate size) override;
+        Vector2D GetCenteredPositionFromCoordinate(const Coordinate& c) const override;
+        Coordinate GetCoordinateFromPosition(const Vector2D& v) const override;
+        int GetIndexFromCoordinate(const Coordinate& coordinate) const override;
+        CellInfo GetCellInfo(const Coordinate& c) const override;
+        Coordinate GetCoordinateFromCellIndex(const int index) const override;
+        Coordinate GetWorldSize() const override;
+        void SetCellType(const Coordinate& c, const CellInfo& info) override;
+        void SetWorldSize(const Coordinate& size) override;
+
         virtual void Draw() override = 0; // pure virtual here because any inherritor class should implement this
     };
 }

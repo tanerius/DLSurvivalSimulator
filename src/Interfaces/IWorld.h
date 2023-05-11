@@ -23,41 +23,46 @@ namespace DLS
         /// <summary>
         /// Returns the type of cell
         /// </summary>
-        virtual CellInfo GetCellInfo(Coordinate c) = 0;
+        virtual CellInfo GetCellInfo(const Coordinate& c) const = 0;
 
         /// <summary>
         /// Get a center world position from a coordinate
         /// </summary>
-        virtual Vector2D GetCenteredPositionFromCoordinate(Coordinate c) = 0;
+        virtual Vector2D GetCenteredPositionFromCoordinate(const Coordinate& c) const = 0;
 
         /// <summary>
         /// Get a coordinate from a world position
         /// </summary>
-        virtual Coordinate GetCoordinateFromPosition(Vector2D v) = 0;
+        virtual Coordinate GetCoordinateFromPosition(const Vector2D& v) const = 0;
 
         /// <summary>
         /// Returns the coordinate of a cell based on a linear index
         /// </summary>
-        virtual Coordinate GetCoordinateFromCellIndex(int index) = 0;
+        virtual Coordinate GetCoordinateFromCellIndex(const int index) const = 0;
 
         /// <summary>
         /// Returns the array index from the given coordinate
         /// </summary>
-        virtual int GetIndexFromCoordinate(Coordinate coordinate) = 0;
+        virtual int GetIndexFromCoordinate(const Coordinate& coordinate) const = 0;
 
         /// <summary>
         /// Returns the size of the world
         /// </summary>
-        virtual Coordinate GetWorldSize() = 0;
+        virtual Coordinate GetWorldSize() const = 0;
 
         /// <summary>
         /// Sets the type of cell
         /// </summary>
-        virtual void SetCellType(Coordinate c, CellInfo info) = 0;
+        virtual void SetCellType(const Coordinate& c, const CellInfo& info) = 0;
+
+        /// <summary>
+        /// Get the x,y size of a cell
+        /// </summary>
+        virtual Vector2D GetCellSize() const = 0;
 
         /// <summary>
         /// Sets the size of the world
         /// </summary>
-        virtual void  SetWorldSize(Coordinate size) = 0;
+        virtual void SetWorldSize(const Coordinate& size) = 0;
     };
 }

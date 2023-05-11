@@ -27,26 +27,25 @@ namespace DLS
         Agent(Vector2D position);
 
         // Methods from IEntity start here
-        virtual EntityType Type() const override { return m_entityType; }
-        virtual Vector2D PositionVector() const override { return m_position; };
+        EntityType Type() const override { return m_entityType; }
+        Vector2D PositionVector() const override { return m_position; };
+
         virtual bool HasCollided() override;
         virtual void Update() override;
-
-        // Methids from IEntity finish here
-
+                
         float MaxSpeed() const { return m_maxSpeed; }
 
-        virtual void Accelerate() override;
-        virtual Vector2D GetForwardVector() const override;
-        virtual float GetOrientationAngle() const override { return m_forward.theta; };
+        void Accelerate() override;
+        Vector2D GetForwardVector() const override;
+        float GetOrientationAngle() const override { return m_forward.theta; };
         std::vector<Vector2D> GetSensorVectors();
         int GetSensorRayCount() const { return m_sensor->GetRayCount(); }
         float GetSpeed() const override;
-        virtual void RotateLeft() override;
-        virtual void RotateRight() override;
-        void SetPosition(Vector2D pos) override;
-        virtual void Reverse() override;
-        virtual void Stop() override;
+        void RotateLeft() override;
+        void RotateRight() override;
+        void SetPosition(const Vector2D& pos) override;
+        void Reverse() override;
+        void Stop() override;
         virtual bool IsAlive() const override { return m_isAlive; };
     };
 }

@@ -15,12 +15,20 @@ namespace DLS
         
         public:
         Vector2D PositionVector() const override { return m_position; }
-        void SetPosition(Vector2D p) override {
-            m_position = p;
+        
+        void SetPosition(const Vector2D& p) override {
+            m_position.x = p.x;
+            m_position.y = p.y;
         }
+
         EntityType Type() const override { return m_entityType; }
 
-        void SetCoordinate(const Coordinate c) override { m_coordinate = c; }
+        void SetCoordinate(const Coordinate& c) override 
+        { 
+            m_coordinate.X = c.X; 
+            m_coordinate.Y = c.Y;
+        }
+
         Coordinate GetCoordinate() const override { return m_coordinate; }
     };
 }
