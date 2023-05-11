@@ -38,7 +38,9 @@ add_executable(DLSim
     "src/models/Sensor.cpp" 
     "src/Interfaces/IEntity.h"
     "src/Interfaces/IObstacle.h"
-    "src/models/Wall.h")
+    "src/models/Wall.h"
+    "src/graphics/WallRenderer.h"
+    "src/graphics/WallRenderer.cpp")
 
 target_compile_features(DLSim PRIVATE cxx_std_20)
 

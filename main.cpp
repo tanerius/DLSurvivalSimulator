@@ -1,3 +1,4 @@
+#include "WallRenderer.h"
 #include <SFML/Graphics.hpp>
 #include <AgentRenderer.h>
 #include <WorldRenderer.h>
@@ -48,6 +49,17 @@ DLS::AgentRenderer* CreateAgent(DLS::WorldRenderer& currentWorld,  DLS::Coordina
     return new DLS::AgentRenderer(currentWorld.GetContext(), agentPos, agentSize);
 }
 
+DLS::WallRenderer* CreateWall(DLS::WorldRenderer& currentWorld,  DLS::Coordinate where)
+{
+    auto agentPos = currentWorld.GetCenteredPositionFromCoordinate(where);
+    auto cellSize = currentWorld.GetCellSize();
+
+    cellSize.x = cellSize.x * 0.9f;
+    cellSize.y = cellSize.y * 0.9f;
+
+    return new DLS::WallRenderer(currentWorld.GetContext(), agentPos, cellSize);
+}
+
 int main(void)
 {
     DLS::Sensor* s = nullptr;
@@ -55,6 +67,12 @@ int main(void)
     
     auto agent = CreateAgent(world, {3,3});
     world.AddEntityToWorld(agent);
+
+    for (int i = 0; i < 10 ; i++)
+    {
+        auto w = CreateWall(world, {0,i});
+        world.AddEntityToWorld(w);
+    }
 
     world.Run();
 
