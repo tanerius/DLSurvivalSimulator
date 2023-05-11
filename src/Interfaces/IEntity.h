@@ -9,7 +9,7 @@ namespace DLS
     class IEntity
     {
     private:
-        float m_sizeRadius = 50.0f; // for the collider
+        Vector2D m_colliderHeightWidth{ 10.f, 10.f }; // height and widfth of collider
     public:
         /// <summary>
         /// Method to check if entity has collided with something
@@ -19,7 +19,23 @@ namespace DLS
         virtual Vector2D PositionVector() const = 0;
         virtual EntityType Type() const = 0;
         virtual void SetPosition(const Vector2D& pos) = 0;
-        
+
+        void SetHeightWidth(const Vector2D& hw)
+        {
+            m_colliderHeightWidth.x = hw.x;
+            m_colliderHeightWidth.y = hw.y;
+        }
+
+        Vector2D GetHeightWidth() const { return m_colliderHeightWidth; }
+
+        Box GetCollisionBox() const
+        {
+            Box ret;
+            ret.TopLeft = { PositionVector().x - (GetHeightWidth().x / 2), PositionVector().y - (GetHeightWidth().y / 2) };
+            ret.BottomRight = { PositionVector().x + (GetHeightWidth().x / 2), PositionVector().y + (GetHeightWidth().y / 2) };
+            return ret;
+        }
+
         /// <summary>
         /// Method to be called on each frame which will update enity values
         /// </summary>

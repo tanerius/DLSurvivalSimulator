@@ -75,8 +75,9 @@ namespace DLS
         }
     };
 
-    struct Intersection
+    struct Box
     {
-
+        Vector2D TopLeft;
+        Vector2D BottomRight;
     };
 }

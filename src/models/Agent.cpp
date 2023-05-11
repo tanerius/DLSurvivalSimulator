@@ -81,7 +81,8 @@ void DLS::Agent::Stop()
 
 bool DLS::Agent::HasCollided()
 {
-    auto
+    DLS::Box thisBox = GetCollisionBox();
+
         /*
     bool doOverlap(Point l1, Point r1, Point l2, Point r2)
     {
