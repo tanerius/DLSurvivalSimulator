@@ -1,5 +1,6 @@
 #define _USE_MATH_DEFINES
 #include "Agent.h"
+#include "World.h"
 #include <cmath>
 #include <vector>
 
@@ -79,32 +80,43 @@ void DLS::Agent::Stop()
     m_currentSpeed = 0;
 }
 
-bool DLS::Agent::HasCollided()
+bool DLS::Agent::ComputeCollision()
 {
     if (m_isCollided) return true;
+    if (!ExistsInWorld()) return m_isCollided;
 
     DLS::Box thisBox = GetCollisionBox();
 
-        /*
-    bool doOverlap(Point l1, Point r1, Point l2, Point r2)
+    auto entities = GetWorld()->WorldEntities();
+    bool collided = false;
+
+    for (auto entity : entities)
     {
+        auto otherBox = entity->GetCollisionBox();
+
         // if rectangle has area 0, no overlap
-        if (l1.x == r1.x || l1.y == r1.y || r2.x == l2.x || l2.y == r2.y)
-            return false;
+        if (thisBox.TopLeft.x == thisBox.BottomRight.x 
+            || thisBox.TopLeft.y == thisBox.BottomRight.y 
+            || otherBox.TopLeft.x == otherBox.BottomRight.x 
+            || otherBox.TopLeft.y == otherBox.BottomRight.y)
+            continue;
 
         // If one rectangle is on left side of other
-        if (l1.x > r2.x || l2.x > r1.x)
-            return false;
+        if (thisBox.TopLeft.x > otherBox.BottomRight.x || otherBox.TopLeft.x > thisBox.BottomRight.x)
+            continue;
 
         // If one rectangle is above other
-        if (r1.y > l2.y || r2.y > l1.y)
-            return false;
+        if (thisBox.BottomRight.y > otherBox.TopLeft.y || otherBox.BottomRight.y > thisBox.TopLeft.y)
+            continue;
 
-        return true;
+        collided = true;
+
+        SignalCollision();
+        entity->SignalCollision();
+        break;
     }
-    */
 
-    return false;
+    return collided;
 }
 
 void DLS::Agent::Update()

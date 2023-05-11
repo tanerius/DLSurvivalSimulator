@@ -30,5 +30,7 @@ namespace DLS
         }
 
         Coordinate GetCoordinate() const override { return m_coordinate; }
+
+        virtual bool ComputeCollision() override { return false; }
     };
 }

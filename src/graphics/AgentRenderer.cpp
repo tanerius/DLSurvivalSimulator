@@ -35,7 +35,7 @@ void DLS::AgentRenderer::GetInputPlayer()
     }
 }
 
-bool DLS::AgentRenderer::HasCollided() 
+bool DLS::AgentRenderer::HasCollided() const
 {
     //TODO:implemenet
     return false;

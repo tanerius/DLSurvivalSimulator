@@ -31,7 +31,8 @@ namespace DLS
         EntityType Type() const override { return m_entityType; }
         Vector2D PositionVector() const override { return m_position; };
 
-        virtual bool HasCollided() override;
+        virtual bool HasCollided() const override { return m_isCollided; }
+        virtual bool ComputeCollision() override;
         virtual void SignalCollision() override { m_isCollided = true; }
         virtual void Update() override;
                 
