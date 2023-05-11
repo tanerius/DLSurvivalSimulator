@@ -16,6 +16,7 @@ DLS::World::World(Coordinate worldSize) : m_cellSize({10, 10})
 void DLS::World::AddEntityToWorld(DLS::IEntity* entity)
 {
     m_activeEntities.push_back(entity);
+    entity->AddToWorld(this);
 }
 
 DLS::Vector2D DLS::World::GetCenteredPositionFromCoordinate(const DLS::Coordinate& c) const

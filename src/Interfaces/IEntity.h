@@ -3,13 +3,17 @@
 #include "Helpers.h"
 namespace DLS
 {
+    class IWorld;
+
     /// <summary>
     /// An entity that can exist in the world
     /// </summary>
     class IEntity
     {
     private:
-        Vector2D m_colliderHeightWidth{ 10.f, 10.f }; // height and widfth of collider
+        Vector2D m_colliderHeightWidth { 10.f, 10.f }; // height and widfth of collider
+        IWorld* m_world = nullptr;
+
     public:
         /// <summary>
         /// Method to check if entity has collided with something
@@ -34,6 +38,11 @@ namespace DLS
             ret.TopLeft = { PositionVector().x - (GetHeightWidth().x / 2), PositionVector().y - (GetHeightWidth().y / 2) };
             ret.BottomRight = { PositionVector().x + (GetHeightWidth().x / 2), PositionVector().y + (GetHeightWidth().y / 2) };
             return ret;
+        }
+
+        void AddToWorld(IWorld* world)
+        {
+            m_world = world;
         }
 
         /// <summary>
