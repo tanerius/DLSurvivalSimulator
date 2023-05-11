@@ -16,6 +16,11 @@ namespace DLS
         virtual void AddEntityToWorld(IEntity* e) = 0;
 
         /// <summary>
+        /// Remove an entity to the world
+        /// </summary>
+        virtual void RemoveEntityFromWorld(IEntity* e) = 0;
+
+        /// <summary>
         /// Method for drawing the world and its children
         /// </summary>
         virtual void Draw() = 0;

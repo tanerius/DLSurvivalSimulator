@@ -4,6 +4,7 @@
 #include <vector>
 #include <unordered_set>
 #include <random>
+#include <unordered_set>
 
 namespace DLS
 {
@@ -15,7 +16,7 @@ namespace DLS
 
         World() = delete;
     protected:
-        std::vector<IEntity*> m_activeEntities;
+        std::unordered_set<IEntity*> m_activeEntities;
         std::vector<CellInfo> m_worldCells;
         int m_sizeX;
         int m_sizeY;
@@ -27,6 +28,7 @@ namespace DLS
         World(Coordinate worldSize);
         virtual Vector2D GetCellSize() const override; // can be overriden if necessary
         void AddEntityToWorld(IEntity* entity) override; 
+        void RemoveEntityFromWorld(IEntity* e) override;
         Vector2D GetCenteredPositionFromCoordinate(const Coordinate& c) const override;
         Coordinate GetCoordinateFromPosition(const Vector2D& v) const override;
         int GetIndexFromCoordinate(const Coordinate& coordinate) const override;
