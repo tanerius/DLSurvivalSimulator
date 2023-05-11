@@ -1,6 +1,7 @@
 #pragma once
 #include "Helpers.h"
 #include "IAgent.h"
+#include <unordered_set>
 
 namespace DLS
 {
@@ -10,6 +11,7 @@ namespace DLS
     class IWorld
     {
     public:
+        virtual std::unordered_set<IEntity*> WorldEntities() const = 0;
         /// <summary>
         /// Add an entity to the world
         /// </summary>
