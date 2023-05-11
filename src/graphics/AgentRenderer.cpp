@@ -45,7 +45,11 @@ bool DLS::AgentRenderer::HasCollided() const
 void DLS::AgentRenderer::Update()
 {
     Agent::Update();
-    GetInputPlayer();
+    if (!HasCollided())
+    {
+        GetInputPlayer();
+        ComputeCollision();
+    }
     Draw();
 }
 
@@ -57,6 +61,16 @@ void DLS::AgentRenderer::Draw()
     rot.x *= 50.0f;
     rot.y *= 50.0f;
     m_shape->setPosition(newPos.x, newPos.y);
+    
+    if (HasCollided())
+    {
+        m_shape->setFillColor(sf::Color(250, 50, 50));
+    }
+    else
+    {
+        m_shape->setFillColor(sf::Color(100, 250, 50));
+    }
+
     m_context->draw(*m_shape);
 
     // Draw the forward vector
