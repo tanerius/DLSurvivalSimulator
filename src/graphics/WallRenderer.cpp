@@ -4,6 +4,7 @@ DLS::WallRenderer::WallRenderer(sf::RenderWindow* context, Vector2D position, Ve
 {
     SetPosition(position);
     m_context = context;
+    SetHeightWidth(cellSize);
 
     m_shape = new sf::RectangleShape();
     SetPosition(position);

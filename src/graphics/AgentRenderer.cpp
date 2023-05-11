@@ -5,6 +5,7 @@ DLS::AgentRenderer::AgentRenderer(sf::RenderWindow* context, Vector2D startingPo
     m_context(context),
     Agent(startingPosition)
 {
+    SetHeightWidth({agentRadius,agentRadius});
     m_shape = new sf::CircleShape(agentRadius / 2, 10);
     m_shape->setFillColor(sf::Color(100, 250, 50));
     m_shape->setPosition(sf::Vector2f(startingPosition.x, startingPosition.y));
