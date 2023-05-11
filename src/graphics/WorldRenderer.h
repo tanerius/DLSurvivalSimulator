@@ -11,7 +11,6 @@ namespace DLS
             Coordinate m_screenSize;
             sf::RenderWindow* m_context = nullptr;
             std::vector<sf::RectangleShape*> m_tiles;
-            std::vector<IAgent*> m_agents;
 
             void CreateTiles();
 
@@ -21,6 +20,5 @@ namespace DLS
             inline sf::RenderWindow* GetContext() { return m_context; }
             virtual void Draw();
             void Run();
-            virtual Coordinate AddAgentToWorld(IAgent* agent);
     };
 }

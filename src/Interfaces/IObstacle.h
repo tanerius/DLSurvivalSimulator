@@ -1,4 +1,5 @@
 #pragma once
+#include "Helpers.h"
 #include "IEntity.h"
 
 namespace DLS
@@ -8,6 +9,8 @@ namespace DLS
     /// </summary>
     class IObstacle : public IEntity
     {
-    
+        public:
+        virtual Coordinate GetCoordinate() const = 0;
+        virtual void SetCoordinate(const Coordinate c) = 0;
     };
 }

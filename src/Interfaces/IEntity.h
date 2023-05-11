@@ -16,6 +16,8 @@ namespace DLS
         virtual bool HasCollided() = 0;
         virtual Vector2D PositionVector() const = 0;
         virtual EntityType Type() const = 0;
+        virtual void SetPosition(Vector2D pos) = 0;
+        
         /// <summary>
         /// Method to be called on each frame which will update enity values
         /// </summary>

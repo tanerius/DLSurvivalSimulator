@@ -1,4 +1,5 @@
 #include "World.h"
+#include "Agent.h"
 #include <Helpers.h>
 #include <vector>
 #include <IAgent.h>
@@ -9,34 +10,12 @@ DLS::World::World(Coordinate worldSize) : m_cellSize({10, 10})
     m_sizeX = worldSize.X; 
     m_sizeY = worldSize.Y;
     m_worldCells.resize(m_sizeX * m_sizeY, {DLS::CellType::Flat, 0, 0});
-    m_activeAgents.clear();
+    m_activeEntities.clear();
 }
 
-DLS::Coordinate DLS::World::AddAgentToWorld(DLS::IAgent* agent)
+void DLS::World::AddEntityToWorld(DLS::IEntity* entity)
 {
-    int mod = m_sizeX * m_sizeY;
-    int r = GenerateRandomNumber(0, mod);
-    int count = 0;
-    DLS::Coordinate newCoord = { -1, -1};
-    while(m_activeAgents.contains(r))
-    {
-        r = (r+1) % mod;
-        count++;
-        if(count > mod)
-            return newCoord;
-    }
-    m_activeAgents.insert(r);
-    return GetCoordinateFromCellIndex(r);
-}
-
-void DLS::World::AddTerrain(DLS::Coordinate coordArray[], int arraySize, DLS::CellType type)
-{
-    for(int i = 0; i < arraySize; i++)
-    {
-        int index = GetIndexFromCoordinate(coordArray[i]);
-        m_worldCells[index].Type = type;
-    }
-    
+    m_activeEntities.push_back(entity);
 }
 
 DLS::Vector2D DLS::World::GetCenteredPositionFromCoordinate(DLS::Coordinate c)

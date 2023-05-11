@@ -15,5 +15,5 @@ DLS::WallRenderer::WallRenderer(sf::RenderWindow* context, Vector2D position, Ve
 
 void DLS::WallRenderer::Update()
 {
-    m_context->draw(m_shape);
+    m_context->draw(*m_shape);
 }

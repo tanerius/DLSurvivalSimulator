@@ -54,7 +54,7 @@ int main(void)
     DLS::WorldRenderer world({ 1000, 1000 }, { 50, 50 });
     
     auto agent = CreateAgent(world, {3,3});
-    world.AddAgentToWorld(agent); 
+    world.AddEntityToWorld(agent);
 
     world.Run();
 

@@ -11,14 +11,9 @@ namespace DLS
     {
     public:
         /// <summary>
-        /// Add an agent to a random position in the world
+        /// Add an entity to the world
         /// </summary>
-        virtual Coordinate AddAgentToWorld(IAgent* agent) = 0;
-
-        /// <summary>
-        /// Add an agent to an obstacle to a position in the world
-        /// </summary>
-        virtual void AddTerrain(Coordinate coordArray[], int arraySize, CellType type) = 0;
+        virtual void AddEntityToWorld(IEntity* e) = 0;
 
         /// <summary>
         /// Method for drawing the world and its children

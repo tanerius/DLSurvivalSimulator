@@ -39,7 +39,6 @@ DLS::WorldRenderer::WorldRenderer(DLS::Coordinate screenSize, DLS::Coordinate wo
     SetCellSize({ minWidth, minWidth });
     m_screenSize = screenSize;
     m_tiles.reserve(m_sizeX * m_sizeY);
-    m_agents.reserve(m_sizeX * m_sizeY);
 
     CreateTiles();
 }
@@ -52,11 +51,10 @@ void DLS::WorldRenderer::Draw()
         m_context->draw(*tile);
     }
 
-    // draw the agents
-    for (IAgent* agent : m_agents)
+    // draw the agents and obstacles
+    for (IEntity* enity : m_activeEntities)
     {
-        if(agent->IsAlive())
-            agent->Update();
+            enity->Update();
     }
 }
 
@@ -83,10 +81,4 @@ void DLS::WorldRenderer::Run()
         // end the current frame
         m_context->display();
     }
-}
-
-DLS::Coordinate DLS::WorldRenderer::AddAgentToWorld(IAgent* agent)
-{
-    m_agents.push_back(agent);
-    return GetCoordinateFromPosition(agent->PositionVector());
 }
