@@ -45,6 +45,13 @@ namespace DLS
             m_world = world;
         }
 
+        void RemoveFromWorld()
+        {
+            m_world = nullptr;
+        }
+
+        bool ExistsInWorld() const { return m_world != nullptr; }
+
         /// <summary>
         /// Method to be called on each frame which will update enity values
         /// </summary>
