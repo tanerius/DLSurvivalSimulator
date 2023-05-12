@@ -10,27 +10,29 @@ namespace DLS
         private:
         const   EntityType  m_entityType        {EntityType::Obstacle};
         const   CellType    m_obstacleType      {CellType::Wall};
-                Vector2D    m_position;
-                Coordinate  m_coordinate;
+                Vector2D    m_position          { 0, 0 };
+                Coordinate  m_coordinate        { 0, 0 };
         
         public:
-        Vector2D PositionVector() const override { return m_position; }
+            Wall() = delete;
+            Wall(int id) { SetId(id); }
+            Vector2D PositionVector() const override { return m_position; }
         
-        void SetPosition(const Vector2D& p) override {
-            m_position.x = p.x;
-            m_position.y = p.y;
-        }
+            void SetPosition(const Vector2D& p) override {
+                m_position.x = p.x;
+                m_position.y = p.y;
+            }
 
-        EntityType Type() const override { return m_entityType; }
+            EntityType Type() const override { return m_entityType; }
 
-        void SetCoordinate(const Coordinate& c) override 
-        { 
-            m_coordinate.X = c.X; 
-            m_coordinate.Y = c.Y;
-        }
+            void SetCoordinate(const Coordinate& c) override 
+            { 
+                m_coordinate.X = c.X; 
+                m_coordinate.Y = c.Y;
+            }
 
-        Coordinate GetCoordinate() const override { return m_coordinate; }
+            Coordinate GetCoordinate() const override { return m_coordinate; }
 
-        virtual bool ComputeCollision() override { return false; }
+            virtual bool ComputeCollision() override { return false; }
     };
 }

@@ -5,6 +5,9 @@
 #include <Sensor.h>
 #include <iostream>
 
+int id = 1;
+int agentid = 10000;
+
 DLS::AgentRenderer* CreateAgent(DLS::WorldRenderer& currentWorld,  DLS::Coordinate where)
 {
     auto agentPos = currentWorld.GetCenteredPositionFromCoordinate(where);
@@ -13,7 +16,7 @@ DLS::AgentRenderer* CreateAgent(DLS::WorldRenderer& currentWorld,  DLS::Coordina
 
     agentSize = agentSize * 0.7f;
 
-    return new DLS::AgentRenderer(currentWorld.GetContext(), agentPos, agentSize);
+    return new DLS::AgentRenderer(currentWorld.GetContext(), agentPos, agentSize, agentid++);
 }
 
 DLS::WallRenderer* CreateWall(DLS::WorldRenderer& currentWorld,  DLS::Coordinate where)
@@ -24,7 +27,7 @@ DLS::WallRenderer* CreateWall(DLS::WorldRenderer& currentWorld,  DLS::Coordinate
     cellSize.x = cellSize.x * 0.9f;
     cellSize.y = cellSize.y * 0.9f;
 
-    return new DLS::WallRenderer(currentWorld.GetContext(), agentPos, cellSize);
+    return new DLS::WallRenderer(currentWorld.GetContext(), agentPos, cellSize, id++);
 }
 
 int main(void)
@@ -36,6 +39,7 @@ int main(void)
     world.AddEntityToWorld(agent);
     auto size = world.GetWorldSize();
 
+    /*
     for (int x = 0; x < size.X; x++)
     {
         auto w = CreateWall(world, { x, 0 });
@@ -51,6 +55,9 @@ int main(void)
         w = CreateWall(world, { size.X - 1, y });
         world.AddEntityToWorld(w);
     }
+    */
+    auto w = CreateWall(world, { 20, 20 });
+    world.AddEntityToWorld(w);
 
     world.Run();
 

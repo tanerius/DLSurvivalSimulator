@@ -17,8 +17,7 @@ namespace DLS
         void Draw();
 
         public:
-        AgentRenderer(sf::RenderWindow* context, Vector2D startingPosition, float agentRadius);
-        virtual bool HasCollided() const override;
+        AgentRenderer(sf::RenderWindow* context, Vector2D startingPosition, float agentRadius, int id);
         virtual void Update() override;
     };
 }

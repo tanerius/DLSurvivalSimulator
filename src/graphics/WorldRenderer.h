@@ -13,6 +13,8 @@ namespace DLS
             std::vector<sf::RectangleShape*> m_tiles;
 
             void CreateTiles();
+            bool m_printed = false;
+            sf::Font m_font;
 
         public:
             WorldRenderer(Coordinate screenSize, Coordinate worldSize);

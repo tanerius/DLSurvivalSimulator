@@ -13,7 +13,7 @@ namespace DLS
             bool m_collided = false;
             
         public:
-            WallRenderer(sf::RenderWindow* context, Vector2D position, Vector2D cellSize);
+            WallRenderer(sf::RenderWindow* context, Vector2D position, Vector2D cellSize, int id);
             inline sf::RenderWindow* GetContext() { return m_context; }
             bool HasCollided() const override { return false; }
             void SignalCollision() override { m_collided = true; }

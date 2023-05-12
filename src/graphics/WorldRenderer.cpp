@@ -1,6 +1,7 @@
 #include "../Interfaces/Helpers.h"
 #include "WorldRenderer.h"
 #include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Text.hpp>
 #include <algorithm>
 
 
@@ -29,7 +30,8 @@ void DLS::WorldRenderer::CreateTiles()
 DLS::WorldRenderer::WorldRenderer(DLS::Coordinate screenSize, DLS::Coordinate worldSize) :
     DLS::World(worldSize)
 {
-    
+    //m_font.loadFromFile("C:\\Windows\\Fonts\\arial.ttf");
+
     m_context = new sf::RenderWindow(sf::VideoMode(screenSize.X, screenSize.Y), "Deep Learning Simulator");
     m_context->setFramerateLimit(60); // set the framerate
     // Calculate how big an agent can be
@@ -45,6 +47,15 @@ DLS::WorldRenderer::WorldRenderer(DLS::Coordinate screenSize, DLS::Coordinate wo
 
 void DLS::WorldRenderer::Draw()
 {
+    /*
+    sf::Text text("hello", m_font);
+    text.setCharacterSize(30);
+    text.setStyle(sf::Text::Bold);
+    text.setFillColor(sf::Color::Red);
+    text.setPosition(sf::Vector2f(100, 100));
+    m_context->draw(text);
+    */
+
     // Draw the world
     for (auto tile : m_tiles)
     {
@@ -52,10 +63,12 @@ void DLS::WorldRenderer::Draw()
     }
 
     // draw the agents and obstacles
-    for (IEntity* enity : m_activeEntities)
+    for (IEntity* entity : m_activeEntities)
     {
-            enity->Update();
+        entity->Update();
     }
+
+    
 }
 
 void DLS::WorldRenderer::Run()

@@ -25,30 +25,31 @@ namespace DLS
                 Sensor*     m_sensor            { nullptr };
         
         public:
-        Agent(Vector2D position);
+            Agent() = delete;
+            Agent(Vector2D position, int id);
 
-        // Methods from IEntity start here
-        EntityType Type() const override { return m_entityType; }
-        Vector2D PositionVector() const override { return m_position; };
+            // Methods from IEntity start here
+            EntityType Type() const override { return m_entityType; }
+            Vector2D PositionVector() const override { return m_position; };
 
-        virtual bool HasCollided() const override { return m_isCollided; }
-        virtual bool ComputeCollision() override;
-        virtual void SignalCollision() override { m_isCollided = true; }
-        virtual void Update() override;
+            virtual bool HasCollided() const override { return m_isCollided; }
+            virtual bool ComputeCollision() override;
+            virtual void SignalCollision() override { m_isCollided = true; }
+            virtual void Update() override;
                 
-        float MaxSpeed() const { return m_maxSpeed; }
+            float MaxSpeed() const { return m_maxSpeed; }
 
-        void Accelerate() override;
-        Vector2D GetForwardVector() const override;
-        float GetOrientationAngle() const override { return m_forward.theta; };
-        std::vector<Vector2D> GetSensorVectors();
-        int GetSensorRayCount() const { return m_sensor->GetRayCount(); }
-        float GetSpeed() const override;
-        void RotateLeft() override;
-        void RotateRight() override;
-        void SetPosition(const Vector2D& pos) override;
-        void Reverse() override;
-        void Stop() override;
-        virtual bool IsAlive() const override { return m_isAlive; };
+            void Accelerate() override;
+            Vector2D GetForwardVector() const override;
+            float GetOrientationAngle() const override { return m_forward.theta; };
+            std::vector<Vector2D> GetSensorVectors();
+            int GetSensorRayCount() const { return m_sensor->GetRayCount(); }
+            float GetSpeed() const override;
+            void RotateLeft() override;
+            void RotateRight() override;
+            void SetPosition(const Vector2D& pos) override;
+            void Reverse() override;
+            void Stop() override;
+            virtual bool IsAlive() const override { return m_isAlive; };
     };
 }

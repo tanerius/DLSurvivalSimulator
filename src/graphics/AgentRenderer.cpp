@@ -1,9 +1,9 @@
 #include "AgentRenderer.h"
 #include <cmath>
 
-DLS::AgentRenderer::AgentRenderer(sf::RenderWindow* context, Vector2D startingPosition, float agentRadius) :
+DLS::AgentRenderer::AgentRenderer(sf::RenderWindow* context, Vector2D startingPosition, float agentRadius, int id) :
     m_context(context),
-    Agent(startingPosition)
+    Agent(startingPosition, id)
 {
     SetHeightWidth({agentRadius,agentRadius});
     m_shape = new sf::CircleShape(agentRadius / 2, 10);
@@ -35,13 +35,6 @@ void DLS::AgentRenderer::GetInputPlayer()
         Accelerate();
     }
 }
-
-bool DLS::AgentRenderer::HasCollided() const
-{
-    //TODO:implemenet
-    return false;
-}
-
 
 void DLS::AgentRenderer::Update()
 {

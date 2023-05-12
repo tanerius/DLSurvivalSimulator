@@ -4,12 +4,13 @@
 #include <cmath>
 #include <vector>
 
-DLS::Agent::Agent(DLS::Vector2D position) :
+DLS::Agent::Agent(DLS::Vector2D position, int id) :
     m_position(position)
 {
     m_forward.r = 1;
     m_forward.theta = 0;
     m_sensor = new Sensor(this);
+    SetId(id);
 }
 
 DLS::Vector2D DLS::Agent::GetForwardVector() const 
@@ -86,13 +87,19 @@ bool DLS::Agent::ComputeCollision()
     if (!ExistsInWorld()) return m_isCollided;
 
     DLS::Box thisBox = GetCollisionBox();
+    DLS::Vector2D pos = PositionVector();
 
     auto entities = GetWorld()->WorldEntities();
     bool collided = false;
+    auto bla = this;
 
     for (auto entity : entities)
     {
+        if (GetId() == entity->GetId())
+            continue;
+
         auto otherBox = entity->GetCollisionBox();
+        DLS::Vector2D posOther = entity->PositionVector();
 
         // if rectangle has area 0, no overlap
         if (thisBox.TopLeft.x == thisBox.BottomRight.x 
@@ -106,7 +113,7 @@ bool DLS::Agent::ComputeCollision()
             continue;
 
         // If one rectangle is above other
-        if (thisBox.BottomRight.y > otherBox.TopLeft.y || otherBox.BottomRight.y > thisBox.TopLeft.y)
+        if (thisBox.BottomRight.y < otherBox.TopLeft.y || otherBox.BottomRight.y < thisBox.TopLeft.y)
             continue;
 
         collided = true;

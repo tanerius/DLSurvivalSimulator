@@ -1,6 +1,7 @@
 #include "WallRenderer.h"
 
-DLS::WallRenderer::WallRenderer(sf::RenderWindow* context, Vector2D position, Vector2D cellSize)
+DLS::WallRenderer::WallRenderer(sf::RenderWindow* context, Vector2D position, Vector2D cellSize, int id) :
+    Wall(id)
 {
     SetPosition(position);
     m_context = context;

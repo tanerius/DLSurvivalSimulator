@@ -13,6 +13,7 @@ namespace DLS
     private:
         Vector2D m_colliderHeightWidth { 10.f, 10.f }; // height and widfth of collider
         IWorld* m_world = nullptr;
+        int m_id = 0;
 
     public:
         /// <summary>
@@ -25,6 +26,9 @@ namespace DLS
         virtual Vector2D PositionVector() const = 0;
         virtual EntityType Type() const = 0;
         virtual void SetPosition(const Vector2D& pos) = 0;
+
+        int GetId() const { return m_id; }
+        void SetId(const int id) { m_id = id; }
 
         void SetHeightWidth(const Vector2D& hw)
         {
