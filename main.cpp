@@ -39,7 +39,6 @@ int main(void)
     world.AddEntityToWorld(agent);
     auto size = world.GetWorldSize();
 
-    /*
     for (int x = 0; x < size.X; x++)
     {
         auto w = CreateWall(world, { x, 0 });
@@ -55,9 +54,7 @@ int main(void)
         w = CreateWall(world, { size.X - 1, y });
         world.AddEntityToWorld(w);
     }
-    */
-    auto w = CreateWall(world, { 20, 20 });
-    world.AddEntityToWorld(w);
+
 
     world.Run();
 
