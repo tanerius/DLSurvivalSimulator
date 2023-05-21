@@ -12,12 +12,13 @@ namespace DLS
             sf::CircleShape* m_shape {nullptr};
             sf::VertexArray m_forwardVector {sf::Lines, 2};
             sf::VertexArray m_sensors;
+            bool m_isAI = false;
 
         void GetInputPlayer();
         void Draw();
 
         public:
-        AgentRenderer(sf::RenderWindow* context, Vector2D startingPosition, float agentRadius, int id);
+        AgentRenderer(sf::RenderWindow* context, Vector2D startingPosition, float agentRadius, int id, bool ai = false);
         virtual void Update() override;
     };
 }

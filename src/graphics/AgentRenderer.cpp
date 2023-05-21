@@ -1,8 +1,9 @@
 #include "AgentRenderer.h"
 #include <cmath>
 
-DLS::AgentRenderer::AgentRenderer(sf::RenderWindow* context, Vector2D startingPosition, float agentRadius, int id) :
+DLS::AgentRenderer::AgentRenderer(sf::RenderWindow* context, Vector2D startingPosition, float agentRadius, int id, bool ai) :
     m_context(context),
+    m_isAI(ai),
     Agent(startingPosition, id)
 {
     SetHeightWidth({agentRadius,agentRadius});
@@ -18,21 +19,28 @@ DLS::AgentRenderer::AgentRenderer(sf::RenderWindow* context, Vector2D startingPo
 
 void DLS::AgentRenderer::GetInputPlayer()
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    if (!m_isAI)
     {
-        RotateRight();
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        {
+            RotateRight();
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        {
+            Reverse();
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        {
+            RotateLeft();
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        {
+            Accelerate();
+        }
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    else
     {
-        Reverse();
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-    {
-        RotateLeft();
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-    {
-        Accelerate();
+        // TODO: AI Controlled movement here
     }
 }
 
@@ -62,7 +70,10 @@ void DLS::AgentRenderer::Draw()
     }
     else
     {
-        m_shape->setFillColor(sf::Color(100, 250, 50));
+        if(!m_isAI)
+            m_shape->setFillColor(sf::Color(100, 250, 50));
+        else
+            m_shape->setFillColor(sf::Color(50, 100, 250));
     }
 
     m_context->draw(*m_shape);
@@ -82,8 +93,16 @@ void DLS::AgentRenderer::Draw()
         int j = 2 * i;
         m_sensors[j].position = sf::Vector2f(newPos.x, newPos.y);
         m_sensors[j+1].position = sf::Vector2f(getSensors[i].x, getSensors[i].y);
-        m_sensors[j].color = sf::Color::Green;
-        m_sensors[j+1].color = sf::Color::Green;
+        if (!m_isAI)
+        {
+            m_sensors[j].color = sf::Color::Green;
+            m_sensors[j + 1].color = sf::Color::Green;
+        }
+        else
+        {
+            m_sensors[j].color = sf::Color::Blue;
+            m_sensors[j + 1].color = sf::Color::Blue;
+        }
     }
     m_context->draw(m_sensors);
 }

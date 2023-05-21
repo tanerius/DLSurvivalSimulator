@@ -19,6 +19,17 @@ DLS::AgentRenderer* CreateAgent(DLS::WorldRenderer& currentWorld,  DLS::Coordina
     return new DLS::AgentRenderer(currentWorld.GetContext(), agentPos, agentSize, agentid++);
 }
 
+DLS::AgentRenderer* CreateAIAgent(DLS::WorldRenderer& currentWorld, DLS::Coordinate where)
+{
+    auto agentPos = currentWorld.GetCenteredPositionFromCoordinate(where);
+    auto cellSize = currentWorld.GetCellSize();
+    float agentSize = std::min(cellSize.x, cellSize.y);
+
+    agentSize = agentSize * 0.7f;
+
+    return new DLS::AgentRenderer(currentWorld.GetContext(), agentPos, agentSize, agentid++, true);
+}
+
 DLS::WallRenderer* CreateWall(DLS::WorldRenderer& currentWorld,  DLS::Coordinate where)
 {
     auto agentPos = currentWorld.GetCenteredPositionFromCoordinate(where);
@@ -37,6 +48,15 @@ int main(void)
     
     auto agent = CreateAgent(world, {3,3});
     world.AddEntityToWorld(agent);
+
+    // Add some AIs
+    agent = CreateAIAgent(world, { 12,18 });
+    world.AddEntityToWorld(agent);
+    agent = CreateAIAgent(world, { 21,33 });
+    world.AddEntityToWorld(agent);
+    agent = CreateAIAgent(world, { 40,38 });
+    world.AddEntityToWorld(agent);
+
     auto size = world.GetWorldSize();
 
     for (int x = 0; x < size.X; x++)
@@ -55,7 +75,13 @@ int main(void)
         world.AddEntityToWorld(w);
     }
 
-    auto w = CreateWall(world, { 25, 25 });
+    auto w = CreateWall(world, { 24, 24 });
+    world.AddEntityToWorld(w);
+    w = CreateWall(world, { 25, 24 });
+    world.AddEntityToWorld(w);
+    w = CreateWall(world, { 24, 25 });
+    world.AddEntityToWorld(w);
+    w = CreateWall(world, { 25, 25 });
     world.AddEntityToWorld(w);
 
     world.Run();
