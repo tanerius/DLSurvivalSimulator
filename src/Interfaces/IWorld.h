@@ -60,7 +60,7 @@ namespace DLS
         /// <summary>
         /// Sets the type of cell
         /// </summary>
-        virtual void SetCellType(const Coordinate& c, const CellInfo& info) = 0;
+        virtual void SetCellInfo(const Coordinate& c, const CellInfo& info) = 0;
 
         /// <summary>
         /// Get the x,y size of a cell

@@ -19,7 +19,7 @@ void DLS::WorldRenderer::CreateTiles()
         shape->setOrigin(sf::Vector2f(cellSize.x / 2, cellSize.y / 2));
         // set a 10-pixel wide orange outline
         shape->setOutlineThickness(1);
-        shape->setOutlineColor(sf::Color(50, 50, 40));
+        shape->setOutlineColor(sf::Color(20, 20, 20));
         auto coord = GetCoordinateFromCellIndex(i);
         auto pos = GetCenteredPositionFromCoordinate(coord);
         shape->setPosition(sf::Vector2f(pos.x, pos.y));

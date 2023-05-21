@@ -35,7 +35,7 @@ namespace DLS
         CellInfo GetCellInfo(const Coordinate& c) const override;
         Coordinate GetCoordinateFromCellIndex(const int index) const override;
         Coordinate GetWorldSize() const override;
-        void SetCellType(const Coordinate& c, const CellInfo& info) override;
+        void SetCellInfo(const Coordinate& c, const CellInfo& info) override;
         void SetWorldSize(const Coordinate& size) override;
 
         virtual void Draw() override = 0; // pure virtual here because any inherritor class should implement this

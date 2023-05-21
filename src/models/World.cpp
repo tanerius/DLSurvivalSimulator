@@ -82,7 +82,7 @@ DLS::Coordinate DLS::World::GetWorldSize() const
     return {m_sizeX, m_sizeY};
 }
 
-void DLS::World::SetCellType(const Coordinate& c, const CellInfo& info)
+void DLS::World::SetCellInfo(const Coordinate& c, const CellInfo& info)
 {
     int index = GetIndexFromCoordinate(c);
     m_worldCells[index] = info;
