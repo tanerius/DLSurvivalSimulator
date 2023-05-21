@@ -39,7 +39,7 @@ void DLS::AgentRenderer::GetInputPlayer()
 void DLS::AgentRenderer::Update()
 {
     Agent::Update();
-    if (!HasCollided())
+    //if (!HasCollided())
     {
         GetInputPlayer();
         ComputeCollision();

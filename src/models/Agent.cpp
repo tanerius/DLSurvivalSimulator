@@ -83,7 +83,6 @@ void DLS::Agent::Stop()
 
 bool DLS::Agent::ComputeCollision()
 {
-    if (m_isCollided) return true;
     if (!ExistsInWorld()) return m_isCollided;
 
     DLS::Box thisBox = GetCollisionBox();
@@ -117,12 +116,11 @@ bool DLS::Agent::ComputeCollision()
             continue;
 
         collided = true;
-
-        SignalCollision();
-        entity->SignalCollision();
+        entity->SignalCollision(collided);
         break;
     }
 
+    SignalCollision(collided);
     return collided;
 }
 

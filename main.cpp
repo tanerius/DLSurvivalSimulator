@@ -55,6 +55,8 @@ int main(void)
         world.AddEntityToWorld(w);
     }
 
+    auto w = CreateWall(world, { 25, 25 });
+    world.AddEntityToWorld(w);
 
     world.Run();
 

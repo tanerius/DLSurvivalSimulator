@@ -34,7 +34,7 @@ namespace DLS
 
             virtual bool HasCollided() const override { return m_isCollided; }
             virtual bool ComputeCollision() override;
-            virtual void SignalCollision() override { m_isCollided = true; }
+            virtual void SignalCollision(bool value) override { m_isCollided = value; }
             virtual void Update() override;
                 
             float MaxSpeed() const { return m_maxSpeed; }
