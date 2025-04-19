@@ -32,7 +32,7 @@ DLS::WorldRenderer::WorldRenderer(DLS::Coordinate screenSize, DLS::Coordinate wo
 {
     //m_font.loadFromFile("C:\\Windows\\Fonts\\arial.ttf");
 
-    m_context = new sf::RenderWindow(sf::VideoMode(screenSize.X, screenSize.Y), "Deep Learning Simulator");
+    m_context = new sf::RenderWindow(sf::VideoMode(sf::Vector2u(screenSize.X,screenSize.Y)), "Deep Learning Simulator");
     m_context->setFramerateLimit(60); // set the framerate
     // Calculate how big an agent can be
     int maxSize = std::max(worldSize.X, worldSize.Y);
@@ -76,13 +76,11 @@ void DLS::WorldRenderer::Run()
     // run the program as long as the window is open
     while (m_context->isOpen())
     {
-        // check all the window's events that were triggered since the last iteration of the loop
-        sf::Event event;
-        while (m_context->pollEvent(event))
+        while (const std::optional event = m_context->pollEvent())
         {
-            // "close requested" event: we close the window
-            if (event.type == sf::Event::Closed)
-                m_context->close();
+            // Close window: exit
+            if (event->is<sf::Event::Closed>())
+            m_context->close();
         }
 
         // clear the window with black color
@@ -94,4 +92,5 @@ void DLS::WorldRenderer::Run()
         // end the current frame
         m_context->display();
     }
+
 }

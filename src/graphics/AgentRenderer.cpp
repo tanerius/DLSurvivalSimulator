@@ -13,7 +13,7 @@ DLS::AgentRenderer::AgentRenderer(sf::RenderWindow* context, Vector2D startingPo
     m_shape->setOrigin(sf::Vector2f(agentRadius / 2, agentRadius / 2));
 
     m_sensors.clear();
-    m_sensors.setPrimitiveType(sf::Lines);
+    m_sensors.setPrimitiveType(sf::PrimitiveType::Lines);
     m_sensors.resize(GetSensorRayCount()*2);
 }
 
@@ -21,19 +21,22 @@ void DLS::AgentRenderer::GetInputPlayer()
 {
     if (!m_isAI)
     {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
         {
             RotateRight();
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        {
+            RotateRight();
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
         {
             Reverse();
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
         {
             RotateLeft();
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
         {
             Accelerate();
         }
@@ -62,7 +65,7 @@ void DLS::AgentRenderer::Draw()
     auto getSensors = GetSensorVectors();
     rot.x *= 50.0f;
     rot.y *= 50.0f;
-    m_shape->setPosition(newPos.x, newPos.y);
+    m_shape->setPosition(sf::Vector2f(newPos.x, newPos.y));
     
     if (HasCollided())
     {
