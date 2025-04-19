@@ -25,9 +25,6 @@ void DLS::AgentRenderer::GetInputPlayer()
         {
             RotateRight();
         }
-        {
-            RotateRight();
-        }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
         {
             Reverse();
