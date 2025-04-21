@@ -23,10 +23,11 @@ FetchContent_MakeAvailable(SFML)
 
 add_executable(DLSim
     "src/main.cpp"
+    "src/Random.hpp"
+    "src/Random.cpp"
     "src/graphics/Renderer.hpp"
     "src/graphics/Renderer.cpp"
     "src/Types.hpp"
-    "src/Entity.hpp"
     "src/World.hpp"
     "src/World.cpp"
 )

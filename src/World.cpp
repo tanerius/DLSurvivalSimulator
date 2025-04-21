@@ -1,4 +1,5 @@
 #include "World.hpp"
+#include "Random.hpp"
 #include <cassert>
 
 DLSim::uint DLSim::World::GetValueForCell(const Coordinate c) const
@@ -19,8 +20,8 @@ DLSim::Coordinate DLSim::World::GetRandomEmptyLocation() const
     Coordinate c(0, 0);
     do
     {
-        c.X = randomUInt(0, m_sizeX - 1);
-        c.Y = randomUInt(0, m_sizeY - 1);
+        c.X = DLSim::randomUInt(0, m_sizeX - 1);
+        c.Y = DLSim::randomUInt(0, m_sizeY - 1);
     } while (!IsEmptyAt(c));
 
     return c;

@@ -1,15 +1,32 @@
 #pragma once
-#include <random>
-#include <limits>
 
 namespace DLSim
 {
     using uint = unsigned int;
 
-    enum class EntityType : unsigned int
+    enum class EntityType : uint
     {
         Wall = 1,
         Agent = 1000
+    };
+
+    /*
+    Compass looks like t his:
+    NW=6    N=7      NE=8
+    W=3   CENTER=3   E=5
+    SW=0    S=1      SE=2
+    */
+    enum class Compass : int
+    {
+        SW = 0,
+        S,
+        SE,
+        W,
+        CENTER,
+        E,
+        NW,
+        N,
+        NE
     };
 
     struct Coordinate
@@ -26,18 +43,9 @@ namespace DLSim
         }
     };
 
-    // Each thread gets its own engine, seeded once.
-    // No mutexes, no contention.
-    thread_local std::mt19937_64 tls_engine{std::random_device{}()};
-
-    /**
-     * @brief Returns a uniformly distributed random unsigned int in [min, max].
-     *        Thread‑safe thanks to thread_local engine.
-     */
-    unsigned int randomUInt(const uint min, const int max)
+    struct Entity
     {
-        std::uniform_int_distribution<unsigned int> dist(min, max);
-        return dist(tls_engine);
-    }
-
+        unsigned int Id;
+        EntityType Type;
+    };
 }
